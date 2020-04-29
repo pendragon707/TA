@@ -36,7 +36,7 @@ namespace TA
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            Program.sas(new TaDate(), this);
         }
 
         private void report_Load(object sender, EventArgs e)

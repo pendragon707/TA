@@ -32,8 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ta));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.idTADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idLocationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idInspectorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idLocationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.locationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tADataSet = new TA.TADataSet();
+            this.idInspectorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.inspectorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dateOfAccidentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kindOfAccidentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weatherDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,7 +45,6 @@
             this.schemeDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.anotherCircumstancesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tABindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tADataSet = new TA.TADataSet();
             this.tATableAdapter = new TA.TADataSetTableAdapters.TATableAdapter();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.iDwitnessDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,10 +54,6 @@
             this.fRWitnTABindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.witnessTableAdapter = new TA.TADataSetTableAdapters.WitnessTableAdapter();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.idParticipantsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDriverDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idVehicleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idTADataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fRPartTABindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.participantsTableAdapter = new TA.TADataSetTableAdapters.ParticipantsTableAdapter();
             this.button7 = new System.Windows.Forms.Button();
@@ -77,24 +75,33 @@
             this.vehicleTableAdapter = new TA.TADataSetTableAdapters.VehicleTableAdapter();
             this.driverBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.driverTableAdapter = new TA.TADataSetTableAdapters.DriverTableAdapter();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.iDlocationDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.townDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.streetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idRegionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.locationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.locationTableAdapter = new TA.TADataSetTableAdapters.LocationTableAdapter();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.regionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.inspectorBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.regionsTableAdapter = new TA.TADataSetTableAdapters.RegionsTableAdapter();
+            this.inspectorTableAdapter = new TA.TADataSetTableAdapters.InspectorTableAdapter();
+            this.driverBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.vehicleBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.regionsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.fKTAIdLocation0C85DE4DBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.driverBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.vehicleBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.idParticipantsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDriverDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.idVehicleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.idTADataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tABindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tADataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inspectorBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tABindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fRWitnTABindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -103,9 +110,14 @@
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.driverBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.regionsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inspectorBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driverBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.regionsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fKTAIdLocation0C85DE4DBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driverBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -129,7 +141,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(657, 326);
+            this.dataGridView1.Size = new System.Drawing.Size(757, 367);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.end_edit);
             // 
@@ -144,26 +156,55 @@
             // idLocationDataGridViewTextBoxColumn
             // 
             this.idLocationDataGridViewTextBoxColumn.DataPropertyName = "IdLocation";
+            this.idLocationDataGridViewTextBoxColumn.DataSource = this.locationBindingSource;
+            this.idLocationDataGridViewTextBoxColumn.DisplayMember = "Town";
             this.idLocationDataGridViewTextBoxColumn.HeaderText = "Место ДТП";
             this.idLocationDataGridViewTextBoxColumn.Name = "idLocationDataGridViewTextBoxColumn";
+            this.idLocationDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.idLocationDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.idLocationDataGridViewTextBoxColumn.ValueMember = "IDlocation";
+            this.idLocationDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // locationBindingSource
+            // 
+            this.locationBindingSource.DataMember = "Location";
+            this.locationBindingSource.DataSource = this.tADataSet;
+            // 
+            // tADataSet
+            // 
+            this.tADataSet.DataSetName = "TADataSet";
+            this.tADataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // idInspectorDataGridViewTextBoxColumn
             // 
             this.idInspectorDataGridViewTextBoxColumn.DataPropertyName = "IdInspector";
+            this.idInspectorDataGridViewTextBoxColumn.DataSource = this.inspectorBindingSource;
+            this.idInspectorDataGridViewTextBoxColumn.DisplayMember = "NameOfTheInspector";
             this.idInspectorDataGridViewTextBoxColumn.HeaderText = "Инспектор";
             this.idInspectorDataGridViewTextBoxColumn.Name = "idInspectorDataGridViewTextBoxColumn";
+            this.idInspectorDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.idInspectorDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.idInspectorDataGridViewTextBoxColumn.ValueMember = "IDinspector";
+            this.idInspectorDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // inspectorBindingSource
+            // 
+            this.inspectorBindingSource.DataMember = "Inspector";
+            this.inspectorBindingSource.DataSource = this.tADataSet;
             // 
             // dateOfAccidentDataGridViewTextBoxColumn
             // 
             this.dateOfAccidentDataGridViewTextBoxColumn.DataPropertyName = "DateOfAccident";
             this.dateOfAccidentDataGridViewTextBoxColumn.HeaderText = "Дата ДТП";
             this.dateOfAccidentDataGridViewTextBoxColumn.Name = "dateOfAccidentDataGridViewTextBoxColumn";
+            this.dateOfAccidentDataGridViewTextBoxColumn.Width = 120;
             // 
             // kindOfAccidentDataGridViewTextBoxColumn
             // 
             this.kindOfAccidentDataGridViewTextBoxColumn.DataPropertyName = "KindOfAccident";
             this.kindOfAccidentDataGridViewTextBoxColumn.HeaderText = "Вид ДТП";
             this.kindOfAccidentDataGridViewTextBoxColumn.Name = "kindOfAccidentDataGridViewTextBoxColumn";
+            this.kindOfAccidentDataGridViewTextBoxColumn.Width = 120;
             // 
             // weatherDataGridViewTextBoxColumn
             // 
@@ -202,11 +243,6 @@
             this.tABindingSource.DataMember = "TA";
             this.tABindingSource.DataSource = this.tADataSet;
             // 
-            // tADataSet
-            // 
-            this.tADataSet.DataSetName = "TADataSet";
-            this.tADataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tATableAdapter
             // 
             this.tATableAdapter.ClearBeforeFill = true;
@@ -222,11 +258,11 @@
             this.testimonyDataGridViewTextBoxColumn,
             this.iDtaDataGridViewTextBoxColumn1});
             this.dataGridView2.DataSource = this.fRWitnTABindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(16, 387);
+            this.dataGridView2.Location = new System.Drawing.Point(806, 59);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 28;
-            this.dataGridView2.Size = new System.Drawing.Size(346, 141);
+            this.dataGridView2.Size = new System.Drawing.Size(346, 155);
             this.dataGridView2.TabIndex = 1;
             // 
             // iDwitnessDataGridViewTextBoxColumn1
@@ -277,42 +313,13 @@
             this.idVehicleDataGridViewTextBoxColumn,
             this.idTADataGridViewTextBoxColumn2});
             this.dataGridView3.DataSource = this.fRPartTABindingSource;
-            this.dataGridView3.Location = new System.Drawing.Point(368, 387);
+            this.dataGridView3.Location = new System.Drawing.Point(806, 243);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 28;
-            this.dataGridView3.Size = new System.Drawing.Size(244, 141);
+            this.dataGridView3.Size = new System.Drawing.Size(346, 156);
             this.dataGridView3.TabIndex = 2;
             this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
-            // 
-            // idParticipantsDataGridViewTextBoxColumn
-            // 
-            this.idParticipantsDataGridViewTextBoxColumn.DataPropertyName = "IdParticipants";
-            this.idParticipantsDataGridViewTextBoxColumn.HeaderText = "IdParticipants";
-            this.idParticipantsDataGridViewTextBoxColumn.Name = "idParticipantsDataGridViewTextBoxColumn";
-            this.idParticipantsDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idParticipantsDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // idDriverDataGridViewTextBoxColumn
-            // 
-            this.idDriverDataGridViewTextBoxColumn.DataPropertyName = "IdDriver";
-            this.idDriverDataGridViewTextBoxColumn.HeaderText = "Водитель";
-            this.idDriverDataGridViewTextBoxColumn.Name = "idDriverDataGridViewTextBoxColumn";
-            this.idDriverDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // idVehicleDataGridViewTextBoxColumn
-            // 
-            this.idVehicleDataGridViewTextBoxColumn.DataPropertyName = "IdVehicle";
-            this.idVehicleDataGridViewTextBoxColumn.HeaderText = "ТС";
-            this.idVehicleDataGridViewTextBoxColumn.Name = "idVehicleDataGridViewTextBoxColumn";
-            this.idVehicleDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // idTADataGridViewTextBoxColumn2
-            // 
-            this.idTADataGridViewTextBoxColumn2.DataPropertyName = "IdTA";
-            this.idTADataGridViewTextBoxColumn2.HeaderText = "IdTA";
-            this.idTADataGridViewTextBoxColumn2.Name = "idTADataGridViewTextBoxColumn2";
-            this.idTADataGridViewTextBoxColumn2.Visible = false;
             // 
             // fRPartTABindingSource
             // 
@@ -328,7 +335,7 @@
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(58)))));
             this.button7.Font = new System.Drawing.Font("PT Root UI", 11F);
             this.button7.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button7.Location = new System.Drawing.Point(967, 477);
+            this.button7.Location = new System.Drawing.Point(999, 603);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(155, 51);
@@ -341,7 +348,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.label1.Location = new System.Drawing.Point(28, 362);
+            this.label1.Location = new System.Drawing.Point(818, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 25);
             this.label1.TabIndex = 49;
@@ -351,7 +358,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.label2.Location = new System.Drawing.Point(378, 362);
+            this.label2.Location = new System.Drawing.Point(822, 216);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 25);
             this.label2.TabIndex = 50;
@@ -383,7 +390,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1132, 31);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1166, 31);
             this.bindingNavigator1.TabIndex = 51;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -490,95 +497,9 @@
             // 
             this.driverTableAdapter.ClearBeforeFill = true;
             // 
-            // dataGridView4
-            // 
-            this.dataGridView4.AutoGenerateColumns = false;
-            this.dataGridView4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(58)))));
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDlocationDataGridViewTextBoxColumn1,
-            this.townDataGridViewTextBoxColumn,
-            this.streetDataGridViewTextBoxColumn,
-            this.idRegionDataGridViewTextBoxColumn});
-            this.dataGridView4.DataSource = this.locationBindingSource;
-            this.dataGridView4.Location = new System.Drawing.Point(618, 389);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowTemplate.Height = 28;
-            this.dataGridView4.Size = new System.Drawing.Size(343, 139);
-            this.dataGridView4.TabIndex = 53;
-            // 
-            // iDlocationDataGridViewTextBoxColumn1
-            // 
-            this.iDlocationDataGridViewTextBoxColumn1.DataPropertyName = "IDlocation";
-            this.iDlocationDataGridViewTextBoxColumn1.HeaderText = "IDlocation";
-            this.iDlocationDataGridViewTextBoxColumn1.Name = "iDlocationDataGridViewTextBoxColumn1";
-            this.iDlocationDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.iDlocationDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // townDataGridViewTextBoxColumn
-            // 
-            this.townDataGridViewTextBoxColumn.DataPropertyName = "Town";
-            this.townDataGridViewTextBoxColumn.HeaderText = "Town";
-            this.townDataGridViewTextBoxColumn.Name = "townDataGridViewTextBoxColumn";
-            // 
-            // streetDataGridViewTextBoxColumn
-            // 
-            this.streetDataGridViewTextBoxColumn.DataPropertyName = "Street";
-            this.streetDataGridViewTextBoxColumn.HeaderText = "Street";
-            this.streetDataGridViewTextBoxColumn.Name = "streetDataGridViewTextBoxColumn";
-            // 
-            // idRegionDataGridViewTextBoxColumn
-            // 
-            this.idRegionDataGridViewTextBoxColumn.DataPropertyName = "IdRegion";
-            this.idRegionDataGridViewTextBoxColumn.HeaderText = "IdRegion";
-            this.idRegionDataGridViewTextBoxColumn.Name = "idRegionDataGridViewTextBoxColumn";
-            // 
-            // locationBindingSource
-            // 
-            this.locationBindingSource.DataMember = "Location";
-            this.locationBindingSource.DataSource = this.tADataSet;
-            // 
             // locationTableAdapter
             // 
             this.locationTableAdapter.ClearBeforeFill = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.label3.Location = new System.Drawing.Point(634, 364);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 25);
-            this.label3.TabIndex = 54;
-            this.label3.Text = "Место ДТП";
-            // 
-            // textBox1
-            // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.locationBindingSource, "Town", true));
-            this.textBox1.Location = new System.Drawing.Point(760, 68);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(237, 23);
-            this.textBox1.TabIndex = 55;
-            // 
-            // textBox2
-            // 
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.locationBindingSource, "Street", true));
-            this.textBox2.Location = new System.Drawing.Point(760, 97);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(237, 23);
-            this.textBox2.TabIndex = 56;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.locationBindingSource, "IdRegion", true));
-            this.comboBox1.DataSource = this.regionsBindingSource;
-            this.comboBox1.DisplayMember = "RegionName";
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(759, 127);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(238, 24);
-            this.comboBox1.TabIndex = 57;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // regionsBindingSource
             // 
@@ -587,39 +508,181 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.DataSource = this.inspectorBindingSource1;
+            this.comboBox2.DisplayMember = "NameOfTheInspector";
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("PT Root UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(760, 159);
+            this.comboBox2.Location = new System.Drawing.Point(48, 565);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(237, 24);
+            this.comboBox2.Size = new System.Drawing.Size(289, 33);
             this.comboBox2.TabIndex = 58;
+            this.comboBox2.ValueMember = "IDinspector";
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // inspectorBindingSource1
+            // 
+            this.inspectorBindingSource1.DataMember = "Inspector";
+            this.inspectorBindingSource1.DataSource = this.tADataSet;
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.tABindingSource, "DateOfAccident", true));
             this.dateTimePicker1.Font = new System.Drawing.Font("PT Root UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(759, 193);
+            this.dateTimePicker1.Location = new System.Drawing.Point(382, 424);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(238, 33);
+            this.dateTimePicker1.Size = new System.Drawing.Size(290, 33);
             this.dateTimePicker1.TabIndex = 59;
             // 
             // regionsTableAdapter
             // 
             this.regionsTableAdapter.ClearBeforeFill = true;
             // 
+            // inspectorTableAdapter
+            // 
+            this.inspectorTableAdapter.ClearBeforeFill = true;
+            // 
+            // driverBindingSource1
+            // 
+            this.driverBindingSource1.DataMember = "Driver";
+            this.driverBindingSource1.DataSource = this.tADataSet;
+            // 
+            // vehicleBindingSource1
+            // 
+            this.vehicleBindingSource1.DataMember = "Vehicle";
+            this.vehicleBindingSource1.DataSource = this.tADataSet;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("PT Root UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox3.Location = new System.Drawing.Point(382, 463);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(290, 33);
+            this.textBox3.TabIndex = 60;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DataSource = this.regionsBindingSource1;
+            this.comboBox1.DisplayMember = "RegionName";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("PT Root UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(48, 509);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(285, 33);
+            this.comboBox1.TabIndex = 61;
+            this.comboBox1.ValueMember = "IdRegion";
+            // 
+            // regionsBindingSource1
+            // 
+            this.regionsBindingSource1.DataMember = "Regions";
+            this.regionsBindingSource1.DataSource = this.tADataSet;
+            // 
+            // fKTAIdLocation0C85DE4DBindingSource
+            // 
+            this.fKTAIdLocation0C85DE4DBindingSource.DataMember = "FK__TA__IdLocation__0C85DE4D";
+            this.fKTAIdLocation0C85DE4DBindingSource.DataSource = this.locationBindingSource;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(58)))));
+            this.button1.Font = new System.Drawing.Font("PT Root UI", 11F);
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Location = new System.Drawing.Point(48, 603);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(285, 51);
+            this.button1.TabIndex = 62;
+            this.button1.Text = "Добавить ДТП";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // driverBindingSource2
+            // 
+            this.driverBindingSource2.DataMember = "Driver";
+            this.driverBindingSource2.DataSource = this.tADataSet;
+            // 
+            // vehicleBindingSource2
+            // 
+            this.vehicleBindingSource2.DataMember = "Vehicle";
+            this.vehicleBindingSource2.DataSource = this.tADataSet;
+            // 
+            // idParticipantsDataGridViewTextBoxColumn
+            // 
+            this.idParticipantsDataGridViewTextBoxColumn.DataPropertyName = "IdParticipants";
+            this.idParticipantsDataGridViewTextBoxColumn.HeaderText = "IdParticipants";
+            this.idParticipantsDataGridViewTextBoxColumn.Name = "idParticipantsDataGridViewTextBoxColumn";
+            this.idParticipantsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idParticipantsDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // idDriverDataGridViewTextBoxColumn
+            // 
+            this.idDriverDataGridViewTextBoxColumn.DataPropertyName = "IdDriver";
+            this.idDriverDataGridViewTextBoxColumn.DataSource = this.driverBindingSource2;
+            this.idDriverDataGridViewTextBoxColumn.DisplayMember = "FullName";
+            this.idDriverDataGridViewTextBoxColumn.HeaderText = "Водитель";
+            this.idDriverDataGridViewTextBoxColumn.Name = "idDriverDataGridViewTextBoxColumn";
+            this.idDriverDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.idDriverDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.idDriverDataGridViewTextBoxColumn.ValueMember = "IdDriver";
+            this.idDriverDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // idVehicleDataGridViewTextBoxColumn
+            // 
+            this.idVehicleDataGridViewTextBoxColumn.DataPropertyName = "IdVehicle";
+            this.idVehicleDataGridViewTextBoxColumn.DataSource = this.vehicleBindingSource2;
+            this.idVehicleDataGridViewTextBoxColumn.DisplayMember = "KindOfTheVehicle";
+            this.idVehicleDataGridViewTextBoxColumn.HeaderText = "ТС";
+            this.idVehicleDataGridViewTextBoxColumn.Name = "idVehicleDataGridViewTextBoxColumn";
+            this.idVehicleDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.idVehicleDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.idVehicleDataGridViewTextBoxColumn.ValueMember = "IdVehicle";
+            this.idVehicleDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // idTADataGridViewTextBoxColumn2
+            // 
+            this.idTADataGridViewTextBoxColumn2.DataPropertyName = "IdTA";
+            this.idTADataGridViewTextBoxColumn2.HeaderText = "IdTA";
+            this.idTADataGridViewTextBoxColumn2.Name = "idTADataGridViewTextBoxColumn2";
+            this.idTADataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.DataSource = this.locationBindingSource;
+            this.comboBox3.DisplayMember = "Town";
+            this.comboBox3.Font = new System.Drawing.Font("PT Root UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(48, 424);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(285, 33);
+            this.comboBox3.TabIndex = 63;
+            this.comboBox3.ValueMember = "Town";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.DataSource = this.locationBindingSource;
+            this.comboBox4.DisplayMember = "Street";
+            this.comboBox4.Font = new System.Drawing.Font("PT Root UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(48, 466);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(285, 33);
+            this.comboBox4.TabIndex = 64;
+            this.comboBox4.ValueMember = "Street";
+            // 
             // Ta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(230)))));
-            this.ClientSize = new System.Drawing.Size(1132, 550);
+            this.ClientSize = new System.Drawing.Size(1166, 665);
+            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -631,11 +694,12 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Ta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Ta";
             this.Load += new System.EventHandler(this.Ta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tABindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tADataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inspectorBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tABindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fRWitnTABindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
@@ -645,9 +709,14 @@
             this.bindingNavigator1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.driverBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.regionsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inspectorBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driverBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.regionsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fKTAIdLocation0C85DE4DBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driverBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -680,16 +749,6 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idTADataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idLocationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idInspectorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateOfAccidentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kindOfAccidentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn weatherDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn illuminationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stateOfRoadDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewImageColumn schemeDataGridViewImageColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn anotherCircumstancesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDwitnessDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn testimonyDataGridViewTextBoxColumn;
@@ -698,24 +757,39 @@
         private TADataSetTableAdapters.VehicleTableAdapter vehicleTableAdapter;
         private System.Windows.Forms.BindingSource driverBindingSource;
         private TADataSetTableAdapters.DriverTableAdapter driverTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idParticipantsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDriverDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idVehicleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idTADataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.BindingSource locationBindingSource;
         private TADataSetTableAdapters.LocationTableAdapter locationTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDlocationDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn townDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn streetDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idRegionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.BindingSource regionsBindingSource;
         private TADataSetTableAdapters.RegionsTableAdapter regionsTableAdapter;
+        private System.Windows.Forms.BindingSource inspectorBindingSource;
+        private TADataSetTableAdapters.InspectorTableAdapter inspectorTableAdapter;
+        private System.Windows.Forms.BindingSource driverBindingSource1;
+        private System.Windows.Forms.BindingSource vehicleBindingSource1;
+        private System.Windows.Forms.BindingSource inspectorBindingSource1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.BindingSource regionsBindingSource1;
+        private System.Windows.Forms.BindingSource fKTAIdLocation0C85DE4DBindingSource;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idTADataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn idLocationDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn idInspectorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateOfAccidentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kindOfAccidentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn weatherDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn illuminationDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stateOfRoadDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewImageColumn schemeDataGridViewImageColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn anotherCircumstancesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idParticipantsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn idDriverDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource driverBindingSource2;
+        private System.Windows.Forms.DataGridViewComboBoxColumn idVehicleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource vehicleBindingSource2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idTADataGridViewTextBoxColumn2;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox4;
     }
 }

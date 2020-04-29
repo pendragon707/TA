@@ -22,26 +22,10 @@ namespace TA
 
         private void Vehicle_Load(object sender, EventArgs e)
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "tADataSet.Vehicle_Reg". При необходимости она может быть перемещена или удалена.
-            this.vehicle_RegTableAdapter.Fill(this.tADataSet.Vehicle_Reg); /* эо уже добавлено оу */
-            //this.vehicle_viewTableAdapter.Fill(this.tADataSet.Vehicle_view);
-            //this.vehicleTableAdapter.Fill(this.tADataSet.Vehicle);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "tADataSet.Regions". При необходимости она может быть перемещена или удалена.
+            this.regionsTableAdapter.Fill(this.tADataSet.Regions);
+            this.vehicleTableAdapter.Fill(this.tADataSet.Vehicle);
         }
-
-       /* void random_num(char* number, int len, int n)
-        {
-            for (char i = 0; i < len; i++)
-            {
-                number[i] = rand() % 9;
-            }
-        }
-        void random_str(char* number, int len, int n)
-        {
-            for (int i = 0; i < len; i++)
-            {
-                number[i] = 192 + rand() % (223 - 192 + 1);
-            }
-        }*/
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -63,25 +47,37 @@ namespace TA
 
         private void button3_Click(object sender, EventArgs e)
         {
-            /*
             try
             {
-                vehicleTableAdapter.Update(this.tADataSet.Vehicle);
-                this.Validate();
-                this.vehicleBindingSource.EndEdit();
-                this.vehicleTableAdapter.Update(this.tADataSet.Vehicle);
+                SqlCommand command = new SqlCommand(
+                        @"Insert into dbo.[Vehicle](KindOfTheVehicle, UsefulLife, 
+                TechnicalCondition, LicensePlate, IdRegion) 
+                Values(@Kind, @Life, @Cond, @Num, @Reg)", conn);
+                command.Parameters.Add("@Kind", SqlDbType.VarChar);
+                command.Parameters.Add("@Life", SqlDbType.Int);
+                command.Parameters.Add("@Cond", SqlDbType.VarChar);
+                command.Parameters.Add("@Num", SqlDbType.VarChar);
+                command.Parameters.Add("@Reg", SqlDbType.Int);
+                command.Parameters["@Kind"].Value = textBox1.Text;
+                command.Parameters["@Life"].Value = (int)numericUpDown1.Value;
+                command.Parameters["@Cond"].Value = richTextBox1.Text;
+                command.Parameters["@Num"].Value = textBox4.Text;
+                command.Parameters["@Reg"].Value = comboBox1.SelectedValue;
+
+                command.ExecuteNonQuery();
+
+                this.regionsTableAdapter.Fill(this.tADataSet.Regions);
+                this.vehicleTableAdapter.Fill(this.tADataSet.Vehicle);
             }
-            catch (Exception e3)
+            catch (Exception e2)
             {
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 MessageBox.Show(Program.error2, Program.error0, buttons);
                 return;
             }
-            */
 
-            //   ClientsListViewTableAdapter.Fill();
-            this.vehicle_RegTableAdapter.Update(this.tADataSet.Vehicle_Reg);
-
+            //   ClientsListViewTableAdapter.Fill();о
+            //vehicleTableAdapter.Update(this.tADataSet.Vehicle);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -92,6 +88,23 @@ namespace TA
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void end_edit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                vehicleTableAdapter.Update(this.tADataSet.Vehicle);
+                this.Validate();
+                this.vehicleBindingSource1.EndEdit();
+                this.vehicleTableAdapter.Update(this.tADataSet.Vehicle);
+            }
+            catch (Exception e2)
+            {
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                MessageBox.Show(Program.error2, Program.error0, buttons);
+                return;
+            }
         }
     }
 }

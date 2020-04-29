@@ -7,9 +7,12 @@
     }
 }
 
-namespace TA.TADataSetTableAdapters {
-    
-    
+namespace TA.TADataSetTableAdapters
+{
+    partial class DriverTableAdapter
+    {
+    }
+
     public partial class VehicleTableAdapter {
     }
 }

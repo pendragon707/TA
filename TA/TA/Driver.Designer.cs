@@ -35,7 +35,7 @@
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfIssueResidenceRightsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.licenceCategoriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegionName = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.IdRegion = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.regionsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.tADataSet = new TA.TADataSet();
             this.driverBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -101,14 +101,14 @@
             this.fullNameDataGridViewTextBoxColumn,
             this.dateOfIssueResidenceRightsDataGridViewTextBoxColumn,
             this.licenceCategoriesDataGridViewTextBoxColumn,
-            this.RegionName});
+            this.IdRegion});
             this.dataGridView1.DataSource = this.driverBindingSource1;
             this.dataGridView1.Location = new System.Drawing.Point(12, 37);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(620, 296);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.end_edit);
             // 
             // idDriverDataGridViewTextBoxColumn
             // 
@@ -137,16 +137,18 @@
             this.licenceCategoriesDataGridViewTextBoxColumn.HeaderText = "Категория прав";
             this.licenceCategoriesDataGridViewTextBoxColumn.Name = "licenceCategoriesDataGridViewTextBoxColumn";
             // 
-            // RegionName
+            // IdRegion
             // 
-            this.RegionName.DataPropertyName = "RegionName";
-            this.RegionName.DataSource = this.regionsBindingSource2;
-            this.RegionName.DisplayMember = "RegionName";
-            this.RegionName.HeaderText = "Регион";
-            this.RegionName.Name = "RegionName";
-            this.RegionName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.RegionName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.RegionName.Width = 220;
+            this.IdRegion.DataPropertyName = "IdRegion";
+            this.IdRegion.DataSource = this.regionsBindingSource2;
+            this.IdRegion.DisplayMember = "RegionName";
+            this.IdRegion.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.IdRegion.HeaderText = "Регион";
+            this.IdRegion.Name = "IdRegion";
+            this.IdRegion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IdRegion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IdRegion.ValueMember = "IdRegion";
+            this.IdRegion.Width = 220;
             // 
             // regionsBindingSource2
             // 
@@ -240,56 +242,49 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.label7.Location = new System.Drawing.Point(663, 178);
+            this.label7.Location = new System.Drawing.Point(663, 176);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(155, 25);
             this.label7.TabIndex = 45;
             this.label7.Text = "Категория прав";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.label5.Location = new System.Drawing.Point(663, 69);
+            this.label5.Location = new System.Drawing.Point(663, 63);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 25);
             this.label5.TabIndex = 43;
             this.label5.Text = "ФИО";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // textBox4
             // 
-            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.driverBindingSource, "LicenceCategories", true));
             this.textBox4.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.textBox4.Location = new System.Drawing.Point(652, 203);
+            this.textBox4.Location = new System.Drawing.Point(652, 201);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(218, 33);
             this.textBox4.TabIndex = 41;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // textBox2
             // 
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.driverBindingSource, "FullName", true));
             this.textBox2.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.textBox2.Location = new System.Drawing.Point(652, 92);
+            this.textBox2.Location = new System.Drawing.Point(652, 88);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(218, 33);
             this.textBox2.TabIndex = 39;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.label6.Location = new System.Drawing.Point(663, 123);
+            this.label6.Location = new System.Drawing.Point(663, 121);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(205, 25);
             this.label6.TabIndex = 49;
             this.label6.Text = "Дата получения прав";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // bindingNavigator1
             // 
@@ -419,22 +414,19 @@
             this.label2.Size = new System.Drawing.Size(79, 25);
             this.label2.TabIndex = 52;
             this.label2.Text = "Регион";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // comboBox1
             // 
-            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.driverBindingSource, "RegionName", true));
             this.comboBox1.DataSource = this.regionsBindingSource1;
             this.comboBox1.DisplayMember = "RegionName";
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("PT Root UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(652, 256);
+            this.comboBox1.Location = new System.Drawing.Point(652, 258);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(218, 33);
             this.comboBox1.TabIndex = 53;
-            this.comboBox1.ValueMember = "RegionName";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.ValueMember = "IdRegion";
             // 
             // regionsBindingSource1
             // 
@@ -455,13 +447,11 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.driverBindingSource, "DateOfIssueResidenceRights", true));
             this.dateTimePicker1.Font = new System.Drawing.Font("PT Root UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(654, 147);
+            this.dateTimePicker1.Location = new System.Drawing.Point(654, 145);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(216, 33);
             this.dateTimePicker1.TabIndex = 54;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // taDataSet1
             // 
@@ -473,7 +463,7 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(58)))));
             this.button2.Font = new System.Drawing.Font("PT Root UI", 11F);
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.Location = new System.Drawing.Point(652, 290);
+            this.button2.Location = new System.Drawing.Point(652, 294);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(220, 43);
@@ -569,13 +559,13 @@
         private System.Windows.Forms.BindingSource regionsBindingSource1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.BindingSource regionsBindingSource2;
-        private System.Windows.Forms.DataGridViewComboBoxColumn RegionName;
         private TADataSet taDataSet1;
+        private System.Windows.Forms.BindingSource driverBindingSource1;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDriverDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOfIssueResidenceRightsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn licenceCategoriesDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource driverBindingSource1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewComboBoxColumn IdRegion;
     }
 }

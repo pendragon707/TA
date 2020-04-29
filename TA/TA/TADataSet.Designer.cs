@@ -86,6 +86,10 @@ namespace TA {
         
         private global::System.Data.DataRelation relationFR_Witn_TA;
         
+        private global::System.Data.DataRelation relationFK__Vehicle__IdRegio__7849DB76;
+        
+        private global::System.Data.DataRelation relationFK__Driver__IdRegion__793DFFAF;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -683,6 +687,8 @@ namespace TA {
             this.relationFK__TA__IdInspector__7A672E12 = this.Relations["FK__TA__IdInspector__7A672E12"];
             this.relationFK__TA__IdLocation__0C85DE4D = this.Relations["FK__TA__IdLocation__0C85DE4D"];
             this.relationFR_Witn_TA = this.Relations["FR_Witn_TA"];
+            this.relationFK__Vehicle__IdRegio__7849DB76 = this.Relations["FK__Vehicle__IdRegio__7849DB76"];
+            this.relationFK__Driver__IdRegion__793DFFAF = this.Relations["FK__Driver__IdRegion__793DFFAF"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -777,6 +783,14 @@ namespace TA {
                         this.tableTA.IdTAColumn}, new global::System.Data.DataColumn[] {
                         this.tableWitness.IDtaColumn}, false);
             this.Relations.Add(this.relationFR_Witn_TA);
+            this.relationFK__Vehicle__IdRegio__7849DB76 = new global::System.Data.DataRelation("FK__Vehicle__IdRegio__7849DB76", new global::System.Data.DataColumn[] {
+                        this.tableRegions.IdRegionColumn}, new global::System.Data.DataColumn[] {
+                        this.tableVehicle.IdRegionColumn}, false);
+            this.Relations.Add(this.relationFK__Vehicle__IdRegio__7849DB76);
+            this.relationFK__Driver__IdRegion__793DFFAF = new global::System.Data.DataRelation("FK__Driver__IdRegion__793DFFAF", new global::System.Data.DataColumn[] {
+                        this.tableRegions.IdRegionColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDriver.IdRegionColumn}, false);
+            this.Relations.Add(this.relationFK__Driver__IdRegion__793DFFAF);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1398,7 +1412,7 @@ namespace TA {
             
             private global::System.Data.DataColumn columnLicenceCategories;
             
-            private global::System.Data.DataColumn columnRegionName;
+            private global::System.Data.DataColumn columnIdRegion;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -1467,9 +1481,9 @@ namespace TA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn RegionNameColumn {
+            public global::System.Data.DataColumn IdRegionColumn {
                 get {
-                    return this.columnRegionName;
+                    return this.columnIdRegion;
                 }
             }
             
@@ -1510,14 +1524,17 @@ namespace TA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DriverRow AddDriverRow(string FullName, System.DateTime DateOfIssueResidenceRights, string LicenceCategories, string RegionName) {
+            public DriverRow AddDriverRow(string FullName, System.DateTime DateOfIssueResidenceRights, string LicenceCategories, RegionsRow parentRegionsRowByFK__Driver__IdRegion__793DFFAF) {
                 DriverRow rowDriverRow = ((DriverRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         FullName,
                         DateOfIssueResidenceRights,
                         LicenceCategories,
-                        RegionName};
+                        null};
+                if ((parentRegionsRowByFK__Driver__IdRegion__793DFFAF != null)) {
+                    columnValuesArray[4] = parentRegionsRowByFK__Driver__IdRegion__793DFFAF[0];
+                }
                 rowDriverRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDriverRow);
                 return rowDriverRow;
@@ -1551,7 +1568,7 @@ namespace TA {
                 this.columnFullName = base.Columns["FullName"];
                 this.columnDateOfIssueResidenceRights = base.Columns["DateOfIssueResidenceRights"];
                 this.columnLicenceCategories = base.Columns["LicenceCategories"];
-                this.columnRegionName = base.Columns["RegionName"];
+                this.columnIdRegion = base.Columns["IdRegion"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1565,8 +1582,8 @@ namespace TA {
                 base.Columns.Add(this.columnDateOfIssueResidenceRights);
                 this.columnLicenceCategories = new global::System.Data.DataColumn("LicenceCategories", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLicenceCategories);
-                this.columnRegionName = new global::System.Data.DataColumn("RegionName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRegionName);
+                this.columnIdRegion = new global::System.Data.DataColumn("IdRegion", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdRegion);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdDriver}, true));
                 this.columnIdDriver.AutoIncrement = true;
@@ -1579,8 +1596,6 @@ namespace TA {
                 this.columnFullName.MaxLength = 20;
                 this.columnDateOfIssueResidenceRights.AllowDBNull = false;
                 this.columnLicenceCategories.MaxLength = 4;
-                this.columnRegionName.AllowDBNull = false;
-                this.columnRegionName.MaxLength = 60;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3585,8 +3600,6 @@ namespace TA {
             
             private global::System.Data.DataColumn columnIdTA;
             
-            private global::System.Data.DataColumn columnIdWitness;
-            
             private global::System.Data.DataColumn columnIdLocation;
             
             private global::System.Data.DataColumn columnIdInspector;
@@ -3643,14 +3656,6 @@ namespace TA {
             public global::System.Data.DataColumn IdTAColumn {
                 get {
                     return this.columnIdTA;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IdWitnessColumn {
-                get {
-                    return this.columnIdWitness;
                 }
             }
             
@@ -3763,11 +3768,10 @@ namespace TA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TARow AddTARow(int IdWitness, LocationRow parentLocationRowByFK__TA__IdLocation__0C85DE4D, InspectorRow parentInspectorRowByFK__TA__IdInspector__7A672E12, System.DateTime DateOfAccident, string KindOfAccident, string Weather, string Illumination, string StateOfRoad, byte[] Scheme, string AnotherCircumstances) {
+            public TARow AddTARow(LocationRow parentLocationRowByFK__TA__IdLocation__0C85DE4D, InspectorRow parentInspectorRowByFK__TA__IdInspector__7A672E12, System.DateTime DateOfAccident, string KindOfAccident, string Weather, string Illumination, string StateOfRoad, byte[] Scheme, string AnotherCircumstances) {
                 TARow rowTARow = ((TARow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        IdWitness,
                         null,
                         null,
                         DateOfAccident,
@@ -3778,10 +3782,10 @@ namespace TA {
                         Scheme,
                         AnotherCircumstances};
                 if ((parentLocationRowByFK__TA__IdLocation__0C85DE4D != null)) {
-                    columnValuesArray[2] = parentLocationRowByFK__TA__IdLocation__0C85DE4D[0];
+                    columnValuesArray[1] = parentLocationRowByFK__TA__IdLocation__0C85DE4D[0];
                 }
                 if ((parentInspectorRowByFK__TA__IdInspector__7A672E12 != null)) {
-                    columnValuesArray[3] = parentInspectorRowByFK__TA__IdInspector__7A672E12[0];
+                    columnValuesArray[2] = parentInspectorRowByFK__TA__IdInspector__7A672E12[0];
                 }
                 rowTARow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTARow);
@@ -3813,7 +3817,6 @@ namespace TA {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnIdTA = base.Columns["IdTA"];
-                this.columnIdWitness = base.Columns["IdWitness"];
                 this.columnIdLocation = base.Columns["IdLocation"];
                 this.columnIdInspector = base.Columns["IdInspector"];
                 this.columnDateOfAccident = base.Columns["DateOfAccident"];
@@ -3830,8 +3833,6 @@ namespace TA {
             private void InitClass() {
                 this.columnIdTA = new global::System.Data.DataColumn("IdTA", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdTA);
-                this.columnIdWitness = new global::System.Data.DataColumn("IdWitness", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdWitness);
                 this.columnIdLocation = new global::System.Data.DataColumn("IdLocation", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdLocation);
                 this.columnIdInspector = new global::System.Data.DataColumn("IdInspector", typeof(int), null, global::System.Data.MappingType.Element);
@@ -4316,7 +4317,7 @@ namespace TA {
             
             private global::System.Data.DataColumn columnLicensePlate;
             
-            private global::System.Data.DataColumn columnRegionName;
+            private global::System.Data.DataColumn columnIdRegion;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -4393,9 +4394,9 @@ namespace TA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn RegionNameColumn {
+            public global::System.Data.DataColumn IdRegionColumn {
                 get {
-                    return this.columnRegionName;
+                    return this.columnIdRegion;
                 }
             }
             
@@ -4436,7 +4437,7 @@ namespace TA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public VehicleRow AddVehicleRow(string KindOfTheVehicle, int UsefulLife, string TechnicalCondition, string LicensePlate, string RegionName) {
+            public VehicleRow AddVehicleRow(string KindOfTheVehicle, int UsefulLife, string TechnicalCondition, string LicensePlate, RegionsRow parentRegionsRowByFK__Vehicle__IdRegio__7849DB76) {
                 VehicleRow rowVehicleRow = ((VehicleRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4444,7 +4445,10 @@ namespace TA {
                         UsefulLife,
                         TechnicalCondition,
                         LicensePlate,
-                        RegionName};
+                        null};
+                if ((parentRegionsRowByFK__Vehicle__IdRegio__7849DB76 != null)) {
+                    columnValuesArray[5] = parentRegionsRowByFK__Vehicle__IdRegio__7849DB76[0];
+                }
                 rowVehicleRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVehicleRow);
                 return rowVehicleRow;
@@ -4479,7 +4483,7 @@ namespace TA {
                 this.columnUsefulLife = base.Columns["UsefulLife"];
                 this.columnTechnicalCondition = base.Columns["TechnicalCondition"];
                 this.columnLicensePlate = base.Columns["LicensePlate"];
-                this.columnRegionName = base.Columns["RegionName"];
+                this.columnIdRegion = base.Columns["IdRegion"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4495,8 +4499,8 @@ namespace TA {
                 base.Columns.Add(this.columnTechnicalCondition);
                 this.columnLicensePlate = new global::System.Data.DataColumn("LicensePlate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLicensePlate);
-                this.columnRegionName = new global::System.Data.DataColumn("RegionName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRegionName);
+                this.columnIdRegion = new global::System.Data.DataColumn("IdRegion", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdRegion);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdVehicle}, true));
                 this.columnIdVehicle.AutoIncrement = true;
@@ -4510,8 +4514,6 @@ namespace TA {
                 this.columnTechnicalCondition.MaxLength = 200;
                 this.columnLicensePlate.AllowDBNull = false;
                 this.columnLicensePlate.MaxLength = 9;
-                this.columnRegionName.AllowDBNull = false;
-                this.columnRegionName.MaxLength = 60;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7705,12 +7707,28 @@ namespace TA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RegionName {
+            public int IdRegion {
                 get {
-                    return ((string)(this[this.tableDriver.RegionNameColumn]));
+                    try {
+                        return ((int)(this[this.tableDriver.IdRegionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'IdRegion\' в таблице \'Driver\' равно DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableDriver.RegionNameColumn] = value;
+                    this[this.tableDriver.IdRegionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RegionsRow RegionsRow {
+                get {
+                    return ((RegionsRow)(this.GetParentRow(this.Table.ParentRelations["FK__Driver__IdRegion__793DFFAF"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__Driver__IdRegion__793DFFAF"]);
                 }
             }
             
@@ -7724,6 +7742,18 @@ namespace TA {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetLicenceCategoriesNull() {
                 this[this.tableDriver.LicenceCategoriesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsIdRegionNull() {
+                return this.IsNull(this.tableDriver.IdRegionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetIdRegionNull() {
+                this[this.tableDriver.IdRegionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8384,6 +8414,28 @@ namespace TA {
                     return ((LocationRow[])(base.GetChildRows(this.Table.ChildRelations["FK__Location__IdRegi__7C1A6C5A"])));
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public VehicleRow[] GetVehicleRows() {
+                if ((this.Table.ChildRelations["FK__Vehicle__IdRegio__7849DB76"] == null)) {
+                    return new VehicleRow[0];
+                }
+                else {
+                    return ((VehicleRow[])(base.GetChildRows(this.Table.ChildRelations["FK__Vehicle__IdRegio__7849DB76"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public DriverRow[] GetDriverRows() {
+                if ((this.Table.ChildRelations["FK__Driver__IdRegion__793DFFAF"] == null)) {
+                    return new DriverRow[0];
+                }
+                else {
+                    return ((DriverRow[])(base.GetChildRows(this.Table.ChildRelations["FK__Driver__IdRegion__793DFFAF"])));
+                }
+            }
         }
         
         /// <summary>
@@ -8534,22 +8586,6 @@ namespace TA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int IdWitness {
-                get {
-                    try {
-                        return ((int)(this[this.tableTA.IdWitnessColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'IdWitness\' в таблице \'TA\' равно DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTA.IdWitnessColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int IdLocation {
                 get {
                     return ((int)(this[this.tableTA.IdLocationColumn]));
@@ -8692,18 +8728,6 @@ namespace TA {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK__TA__IdLocation__0C85DE4D"]);
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsIdWitnessNull() {
-                return this.IsNull(this.tableTA.IdWitnessColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetIdWitnessNull() {
-                this[this.tableTA.IdWitnessColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8980,12 +9004,28 @@ namespace TA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RegionName {
+            public int IdRegion {
                 get {
-                    return ((string)(this[this.tableVehicle.RegionNameColumn]));
+                    try {
+                        return ((int)(this[this.tableVehicle.IdRegionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'IdRegion\' в таблице \'Vehicle\' равно DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableVehicle.RegionNameColumn] = value;
+                    this[this.tableVehicle.IdRegionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RegionsRow RegionsRow {
+                get {
+                    return ((RegionsRow)(this.GetParentRow(this.Table.ParentRelations["FK__Vehicle__IdRegio__7849DB76"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__Vehicle__IdRegio__7849DB76"]);
                 }
             }
             
@@ -9011,6 +9051,18 @@ namespace TA {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetTechnicalConditionNull() {
                 this[this.tableVehicle.TechnicalConditionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsIdRegionNull() {
+                return this.IsNull(this.tableVehicle.IdRegionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetIdRegionNull() {
+                this[this.tableVehicle.IdRegionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11103,8 +11155,33 @@ SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, S
             tableMapping.ColumnMappings.Add("FullName", "FullName");
             tableMapping.ColumnMappings.Add("DateOfIssueResidenceRights", "DateOfIssueResidenceRights");
             tableMapping.ColumnMappings.Add("LicenceCategories", "LicenceCategories");
-            tableMapping.ColumnMappings.Add("RegionName", "RegionName");
+            tableMapping.ColumnMappings.Add("IdRegion", "IdRegion");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Driver] WHERE (([IdDriver] = @Original_IdDriver))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdDriver", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdDriver", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Driver] ([FullName], [DateOfIssueResidenceRights], [LicenceCategories], [IdRegion]) VALUES (@FullName, @DateOfIssueResidenceRights, @LicenceCategories, @IdRegion);
+SELECT IdDriver, FullName, DateOfIssueResidenceRights, LicenceCategories, IdRegion FROM Driver WHERE (IdDriver = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FullName", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FullName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateOfIssueResidenceRights", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfIssueResidenceRights", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LicenceCategories", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LicenceCategories", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdRegion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdRegion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Driver] SET [FullName] = @FullName, [DateOfIssueResidenceRights] = @DateOfIssueResidenceRights, [LicenceCategories] = @LicenceCategories, [IdRegion] = @IdRegion WHERE (([IdDriver] = @Original_IdDriver));
+SELECT IdDriver, FullName, DateOfIssueResidenceRights, LicenceCategories, IdRegion FROM Driver WHERE (IdDriver = @IdDriver)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FullName", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FullName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateOfIssueResidenceRights", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfIssueResidenceRights", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LicenceCategories", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LicenceCategories", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdRegion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdRegion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdDriver", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdDriver", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdDriver", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IdDriver", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11120,8 +11197,8 @@ SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, S
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT IdDriver, FullName, DateOfIssueResidenceRights, LicenceCategories, RegionN" +
-                "ame FROM dbo.Driver, dbo.Regions WHERE Regions.IdRegion = Driver.IdRegion";
+            this._commandCollection[0].CommandText = "SELECT IdDriver, FullName, DateOfIssueResidenceRights, LicenceCategories, IdRegio" +
+                "n FROM dbo.Driver";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -11147,6 +11224,147 @@ SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, S
             TADataSet.DriverDataTable dataTable = new TADataSet.DriverDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(TADataSet.DriverDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(TADataSet dataSet) {
+            return this.Adapter.Update(dataSet, "Driver");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_IdDriver) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IdDriver));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string FullName, System.DateTime DateOfIssueResidenceRights, string LicenceCategories, global::System.Nullable<int> IdRegion) {
+            if ((FullName == null)) {
+                throw new global::System.ArgumentNullException("FullName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(FullName));
+            }
+            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(DateOfIssueResidenceRights));
+            if ((LicenceCategories == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(LicenceCategories));
+            }
+            if ((IdRegion.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(IdRegion.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string FullName, System.DateTime DateOfIssueResidenceRights, string LicenceCategories, global::System.Nullable<int> IdRegion, int Original_IdDriver, int IdDriver) {
+            if ((FullName == null)) {
+                throw new global::System.ArgumentNullException("FullName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(FullName));
+            }
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(DateOfIssueResidenceRights));
+            if ((LicenceCategories == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(LicenceCategories));
+            }
+            if ((IdRegion.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(IdRegion.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_IdDriver));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(IdDriver));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string FullName, System.DateTime DateOfIssueResidenceRights, string LicenceCategories, global::System.Nullable<int> IdRegion, int Original_IdDriver) {
+            return this.Update(FullName, DateOfIssueResidenceRights, LicenceCategories, IdRegion, Original_IdDriver, Original_IdDriver);
         }
     }
     
@@ -13468,7 +13686,6 @@ SELECT IdRegion, RegionName, RegionCode FROM Regions WHERE (IdRegion = @IdRegion
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "TA";
             tableMapping.ColumnMappings.Add("IdTA", "IdTA");
-            tableMapping.ColumnMappings.Add("IdWitness", "IdWitness");
             tableMapping.ColumnMappings.Add("IdLocation", "IdLocation");
             tableMapping.ColumnMappings.Add("IdInspector", "IdInspector");
             tableMapping.ColumnMappings.Add("DateOfAccident", "DateOfAccident");
@@ -13481,11 +13698,9 @@ SELECT IdRegion, RegionName, RegionCode FROM Regions WHERE (IdRegion = @IdRegion
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[TA] WHERE (([IdTA] = @Original_IdTA) AND ((@IsNull_IdWitness = 1 AND [IdWitness] IS NULL) OR ([IdWitness] = @Original_IdWitness)) AND ([IdLocation] = @Original_IdLocation) AND ([IdInspector] = @Original_IdInspector) AND ([DateOfAccident] = @Original_DateOfAccident) AND ([KindOfAccident] = @Original_KindOfAccident) AND ((@IsNull_Weather = 1 AND [Weather] IS NULL) OR ([Weather] = @Original_Weather)) AND ((@IsNull_Illumination = 1 AND [Illumination] IS NULL) OR ([Illumination] = @Original_Illumination)) AND ((@IsNull_StateOfRoad = 1 AND [StateOfRoad] IS NULL) OR ([StateOfRoad] = @Original_StateOfRoad)) AND ((@IsNull_AnotherCircumstances = 1 AND [AnotherCircumstances] IS NULL) OR ([AnotherCircumstances] = @Original_AnotherCircumstances)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [TA] WHERE (([IdTA] = @Original_IdTA) AND ([IdLocation] = @Original_IdLocation) AND ([IdInspector] = @Original_IdInspector) AND ([DateOfAccident] = @Original_DateOfAccident) AND ([KindOfAccident] = @Original_KindOfAccident) AND ((@IsNull_Weather = 1 AND [Weather] IS NULL) OR ([Weather] = @Original_Weather)) AND ((@IsNull_Illumination = 1 AND [Illumination] IS NULL) OR ([Illumination] = @Original_Illumination)) AND ((@IsNull_StateOfRoad = 1 AND [StateOfRoad] IS NULL) OR ([StateOfRoad] = @Original_StateOfRoad)) AND ((@IsNull_AnotherCircumstances = 1 AND [AnotherCircumstances] IS NULL) OR ([AnotherCircumstances] = @Original_AnotherCircumstances)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdTA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdTA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IdWitness", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdWitness", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdWitness", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdWitness", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdLocation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdLocation", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdInspector", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdInspector", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateOfAccident", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfAccident", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -13500,10 +13715,9 @@ SELECT IdRegion, RegionName, RegionCode FROM Regions WHERE (IdRegion = @IdRegion
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AnotherCircumstances", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AnotherCircumstances", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[TA] ([IdWitness], [IdLocation], [IdInspector], [DateOfAccident], [KindOfAccident], [Weather], [Illumination], [StateOfRoad], [Scheme], [AnotherCircumstances]) VALUES (@IdWitness, @IdLocation, @IdInspector, @DateOfAccident, @KindOfAccident, @Weather, @Illumination, @StateOfRoad, @Scheme, @AnotherCircumstances);
-SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident, Weather, Illumination, StateOfRoad, Scheme, AnotherCircumstances FROM TA WHERE (IdTA = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [TA] ([IdLocation], [IdInspector], [DateOfAccident], [KindOfAccident], [Weather], [Illumination], [StateOfRoad], [Scheme], [AnotherCircumstances]) VALUES (@IdLocation, @IdInspector, @DateOfAccident, @KindOfAccident, @Weather, @Illumination, @StateOfRoad, @Scheme, @AnotherCircumstances);
+SELECT IdTA, IdLocation, IdInspector, DateOfAccident, KindOfAccident, Weather, Illumination, StateOfRoad, Scheme, AnotherCircumstances FROM TA WHERE (IdTA = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdWitness", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdWitness", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdLocation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdLocation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdInspector", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdInspector", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateOfAccident", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfAccident", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -13515,10 +13729,9 @@ SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident,
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AnotherCircumstances", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AnotherCircumstances", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[TA] SET [IdWitness] = @IdWitness, [IdLocation] = @IdLocation, [IdInspector] = @IdInspector, [DateOfAccident] = @DateOfAccident, [KindOfAccident] = @KindOfAccident, [Weather] = @Weather, [Illumination] = @Illumination, [StateOfRoad] = @StateOfRoad, [Scheme] = @Scheme, [AnotherCircumstances] = @AnotherCircumstances WHERE (([IdTA] = @Original_IdTA) AND ((@IsNull_IdWitness = 1 AND [IdWitness] IS NULL) OR ([IdWitness] = @Original_IdWitness)) AND ([IdLocation] = @Original_IdLocation) AND ([IdInspector] = @Original_IdInspector) AND ([DateOfAccident] = @Original_DateOfAccident) AND ([KindOfAccident] = @Original_KindOfAccident) AND ((@IsNull_Weather = 1 AND [Weather] IS NULL) OR ([Weather] = @Original_Weather)) AND ((@IsNull_Illumination = 1 AND [Illumination] IS NULL) OR ([Illumination] = @Original_Illumination)) AND ((@IsNull_StateOfRoad = 1 AND [StateOfRoad] IS NULL) OR ([StateOfRoad] = @Original_StateOfRoad)) AND ((@IsNull_AnotherCircumstances = 1 AND [AnotherCircumstances] IS NULL) OR ([AnotherCircumstances] = @Original_AnotherCircumstances)));
-SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident, Weather, Illumination, StateOfRoad, Scheme, AnotherCircumstances FROM TA WHERE (IdTA = @IdTA)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [TA] SET [IdLocation] = @IdLocation, [IdInspector] = @IdInspector, [DateOfAccident] = @DateOfAccident, [KindOfAccident] = @KindOfAccident, [Weather] = @Weather, [Illumination] = @Illumination, [StateOfRoad] = @StateOfRoad, [Scheme] = @Scheme, [AnotherCircumstances] = @AnotherCircumstances WHERE (([IdTA] = @Original_IdTA) AND ([IdLocation] = @Original_IdLocation) AND ([IdInspector] = @Original_IdInspector) AND ([DateOfAccident] = @Original_DateOfAccident) AND ([KindOfAccident] = @Original_KindOfAccident) AND ((@IsNull_Weather = 1 AND [Weather] IS NULL) OR ([Weather] = @Original_Weather)) AND ((@IsNull_Illumination = 1 AND [Illumination] IS NULL) OR ([Illumination] = @Original_Illumination)) AND ((@IsNull_StateOfRoad = 1 AND [StateOfRoad] IS NULL) OR ([StateOfRoad] = @Original_StateOfRoad)) AND ((@IsNull_AnotherCircumstances = 1 AND [AnotherCircumstances] IS NULL) OR ([AnotherCircumstances] = @Original_AnotherCircumstances)));
+SELECT IdTA, IdLocation, IdInspector, DateOfAccident, KindOfAccident, Weather, Illumination, StateOfRoad, Scheme, AnotherCircumstances FROM TA WHERE (IdTA = @IdTA)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdWitness", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdWitness", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdLocation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdLocation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdInspector", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdInspector", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateOfAccident", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfAccident", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -13529,8 +13742,6 @@ SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Scheme", global::System.Data.SqlDbType.Image, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Scheme", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AnotherCircumstances", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AnotherCircumstances", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdTA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdTA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IdWitness", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdWitness", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdWitness", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdWitness", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdLocation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdLocation", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdInspector", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdInspector", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateOfAccident", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfAccident", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -13559,8 +13770,8 @@ SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident,
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident, " +
-                "Weather, Illumination, StateOfRoad, Scheme, AnotherCircumstances FROM dbo.TA";
+            this._commandCollection[0].CommandText = "SELECT IdTA, IdLocation, IdInspector, DateOfAccident, KindOfAccident, Weather, Il" +
+                "lumination, StateOfRoad, Scheme, AnotherCircumstances FROM TA";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -13621,56 +13832,48 @@ SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_IdTA, global::System.Nullable<int> Original_IdWitness, int Original_IdLocation, int Original_IdInspector, System.DateTime Original_DateOfAccident, string Original_KindOfAccident, string Original_Weather, string Original_Illumination, string Original_StateOfRoad, string Original_AnotherCircumstances) {
+        public virtual int Delete(int Original_IdTA, int Original_IdLocation, int Original_IdInspector, System.DateTime Original_DateOfAccident, string Original_KindOfAccident, string Original_Weather, string Original_Illumination, string Original_StateOfRoad, string Original_AnotherCircumstances) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IdTA));
-            if ((Original_IdWitness.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_IdWitness.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_IdLocation));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_IdInspector));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((System.DateTime)(Original_DateOfAccident));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_IdLocation));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_IdInspector));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_DateOfAccident));
             if ((Original_KindOfAccident == null)) {
                 throw new global::System.ArgumentNullException("Original_KindOfAccident");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_KindOfAccident));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_KindOfAccident));
             }
             if ((Original_Weather == null)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_Weather));
+            }
+            if ((Original_Illumination == null)) {
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_Weather));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_Illumination));
             }
-            if ((Original_Illumination == null)) {
+            if ((Original_StateOfRoad == null)) {
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_Illumination));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_StateOfRoad));
             }
-            if ((Original_StateOfRoad == null)) {
+            if ((Original_AnotherCircumstances == null)) {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_StateOfRoad));
-            }
-            if ((Original_AnotherCircumstances == null)) {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(Original_AnotherCircumstances));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_AnotherCircumstances));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -13692,51 +13895,45 @@ SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> IdWitness, int IdLocation, int IdInspector, System.DateTime DateOfAccident, string KindOfAccident, string Weather, string Illumination, string StateOfRoad, byte[] Scheme, string AnotherCircumstances) {
-            if ((IdWitness.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(IdWitness.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(IdLocation));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(IdInspector));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(DateOfAccident));
+        public virtual int Insert(int IdLocation, int IdInspector, System.DateTime DateOfAccident, string KindOfAccident, string Weather, string Illumination, string StateOfRoad, byte[] Scheme, string AnotherCircumstances) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(IdLocation));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(IdInspector));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(DateOfAccident));
             if ((KindOfAccident == null)) {
                 throw new global::System.ArgumentNullException("KindOfAccident");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(KindOfAccident));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(KindOfAccident));
             }
             if ((Weather == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Weather));
+            }
+            if ((Illumination == null)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Weather));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Illumination));
             }
-            if ((Illumination == null)) {
+            if ((StateOfRoad == null)) {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(Illumination));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(StateOfRoad));
             }
-            if ((StateOfRoad == null)) {
+            if ((Scheme == null)) {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(StateOfRoad));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((byte[])(Scheme));
             }
-            if ((Scheme == null)) {
+            if ((AnotherCircumstances == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((byte[])(Scheme));
-            }
-            if ((AnotherCircumstances == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(AnotherCircumstances));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(AnotherCircumstances));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -13759,7 +13956,6 @@ SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident,
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
-                    global::System.Nullable<int> IdWitness, 
                     int IdLocation, 
                     int IdInspector, 
                     System.DateTime DateOfAccident, 
@@ -13770,7 +13966,6 @@ SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident,
                     byte[] Scheme, 
                     string AnotherCircumstances, 
                     int Original_IdTA, 
-                    global::System.Nullable<int> Original_IdWitness, 
                     int Original_IdLocation, 
                     int Original_IdInspector, 
                     System.DateTime Original_DateOfAccident, 
@@ -13780,102 +13975,88 @@ SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident,
                     string Original_StateOfRoad, 
                     string Original_AnotherCircumstances, 
                     int IdTA) {
-            if ((IdWitness.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(IdWitness.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(IdLocation));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(IdInspector));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(DateOfAccident));
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(IdLocation));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(IdInspector));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(DateOfAccident));
             if ((KindOfAccident == null)) {
                 throw new global::System.ArgumentNullException("KindOfAccident");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(KindOfAccident));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(KindOfAccident));
             }
             if ((Weather == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Weather));
+            }
+            if ((Illumination == null)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Weather));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Illumination));
             }
-            if ((Illumination == null)) {
+            if ((StateOfRoad == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Illumination));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(StateOfRoad));
             }
-            if ((StateOfRoad == null)) {
+            if ((Scheme == null)) {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(StateOfRoad));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((byte[])(Scheme));
             }
-            if ((Scheme == null)) {
+            if ((AnotherCircumstances == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((byte[])(Scheme));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(AnotherCircumstances));
             }
-            if ((AnotherCircumstances == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(AnotherCircumstances));
-            }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_IdTA));
-            if ((Original_IdWitness.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_IdWitness.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_IdLocation));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_IdInspector));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(Original_DateOfAccident));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_IdTA));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_IdLocation));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_IdInspector));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_DateOfAccident));
             if ((Original_KindOfAccident == null)) {
                 throw new global::System.ArgumentNullException("Original_KindOfAccident");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_KindOfAccident));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_KindOfAccident));
             }
             if ((Original_Weather == null)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_Weather));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_Weather));
             }
             if ((Original_Illumination == null)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_Illumination));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Illumination));
             }
             if ((Original_StateOfRoad == null)) {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_StateOfRoad));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_StateOfRoad));
             }
             if ((Original_AnotherCircumstances == null)) {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(Original_AnotherCircumstances));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_AnotherCircumstances));
             }
-            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(IdTA));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(IdTA));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -13897,7 +14078,6 @@ SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident,
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
-                    global::System.Nullable<int> IdWitness, 
                     int IdLocation, 
                     int IdInspector, 
                     System.DateTime DateOfAccident, 
@@ -13908,7 +14088,6 @@ SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident,
                     byte[] Scheme, 
                     string AnotherCircumstances, 
                     int Original_IdTA, 
-                    global::System.Nullable<int> Original_IdWitness, 
                     int Original_IdLocation, 
                     int Original_IdInspector, 
                     System.DateTime Original_DateOfAccident, 
@@ -13917,7 +14096,7 @@ SELECT IdTA, IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident,
                     string Original_Illumination, 
                     string Original_StateOfRoad, 
                     string Original_AnotherCircumstances) {
-            return this.Update(IdWitness, IdLocation, IdInspector, DateOfAccident, KindOfAccident, Weather, Illumination, StateOfRoad, Scheme, AnotherCircumstances, Original_IdTA, Original_IdWitness, Original_IdLocation, Original_IdInspector, Original_DateOfAccident, Original_KindOfAccident, Original_Weather, Original_Illumination, Original_StateOfRoad, Original_AnotherCircumstances, Original_IdTA);
+            return this.Update(IdLocation, IdInspector, DateOfAccident, KindOfAccident, Weather, Illumination, StateOfRoad, Scheme, AnotherCircumstances, Original_IdTA, Original_IdLocation, Original_IdInspector, Original_DateOfAccident, Original_KindOfAccident, Original_Weather, Original_Illumination, Original_StateOfRoad, Original_AnotherCircumstances, Original_IdTA);
         }
     }
     
@@ -14440,8 +14619,35 @@ SELECT ID, Username, Password, IsAdmin FROM Users WHERE (ID = @ID)";
             tableMapping.ColumnMappings.Add("UsefulLife", "UsefulLife");
             tableMapping.ColumnMappings.Add("TechnicalCondition", "TechnicalCondition");
             tableMapping.ColumnMappings.Add("LicensePlate", "LicensePlate");
-            tableMapping.ColumnMappings.Add("RegionName", "RegionName");
+            tableMapping.ColumnMappings.Add("IdRegion", "IdRegion");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Vehicle] WHERE (([IdVehicle] = @Original_IdVehicle))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdVehicle", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdVehicle", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Vehicle] ([KindOfTheVehicle], [UsefulLife], [TechnicalCondition], [LicensePlate], [IdRegion]) VALUES (@KindOfTheVehicle, @UsefulLife, @TechnicalCondition, @LicensePlate, @IdRegion);
+SELECT IdVehicle, KindOfTheVehicle, UsefulLife, TechnicalCondition, LicensePlate, IdRegion FROM Vehicle WHERE (IdVehicle = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@KindOfTheVehicle", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KindOfTheVehicle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsefulLife", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UsefulLife", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TechnicalCondition", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TechnicalCondition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LicensePlate", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LicensePlate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdRegion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdRegion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Vehicle] SET [KindOfTheVehicle] = @KindOfTheVehicle, [UsefulLife] = @UsefulLife, [TechnicalCondition] = @TechnicalCondition, [LicensePlate] = @LicensePlate, [IdRegion] = @IdRegion WHERE (([IdVehicle] = @Original_IdVehicle));
+SELECT IdVehicle, KindOfTheVehicle, UsefulLife, TechnicalCondition, LicensePlate, IdRegion FROM Vehicle WHERE (IdVehicle = @IdVehicle)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@KindOfTheVehicle", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KindOfTheVehicle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsefulLife", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UsefulLife", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TechnicalCondition", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TechnicalCondition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LicensePlate", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LicensePlate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdRegion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdRegion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdVehicle", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdVehicle", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdVehicle", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IdVehicle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14458,8 +14664,7 @@ SELECT ID, Username, Password, IsAdmin FROM Users WHERE (ID = @ID)";
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT IdVehicle, KindOfTheVehicle, UsefulLife, TechnicalCondition, LicensePlate," +
-                " RegionName FROM dbo.Vehicle, dbo.Regions WHERE Regions.IdRegion = Vehicle.IdReg" +
-                "ion";
+                " IdRegion FROM dbo.Vehicle";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -14515,6 +14720,169 @@ SELECT ID, Username, Password, IsAdmin FROM Users WHERE (ID = @ID)";
             TADataSet.VehicleDataTable dataTable = new TADataSet.VehicleDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(TADataSet.VehicleDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(TADataSet dataSet) {
+            return this.Adapter.Update(dataSet, "Vehicle");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_IdVehicle) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IdVehicle));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string KindOfTheVehicle, global::System.Nullable<int> UsefulLife, string TechnicalCondition, string LicensePlate, global::System.Nullable<int> IdRegion) {
+            if ((KindOfTheVehicle == null)) {
+                throw new global::System.ArgumentNullException("KindOfTheVehicle");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(KindOfTheVehicle));
+            }
+            if ((UsefulLife.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(UsefulLife.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((TechnicalCondition == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(TechnicalCondition));
+            }
+            if ((LicensePlate == null)) {
+                throw new global::System.ArgumentNullException("LicensePlate");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(LicensePlate));
+            }
+            if ((IdRegion.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(IdRegion.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string KindOfTheVehicle, global::System.Nullable<int> UsefulLife, string TechnicalCondition, string LicensePlate, global::System.Nullable<int> IdRegion, int Original_IdVehicle, int IdVehicle) {
+            if ((KindOfTheVehicle == null)) {
+                throw new global::System.ArgumentNullException("KindOfTheVehicle");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(KindOfTheVehicle));
+            }
+            if ((UsefulLife.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(UsefulLife.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((TechnicalCondition == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(TechnicalCondition));
+            }
+            if ((LicensePlate == null)) {
+                throw new global::System.ArgumentNullException("LicensePlate");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(LicensePlate));
+            }
+            if ((IdRegion.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(IdRegion.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_IdVehicle));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(IdVehicle));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string KindOfTheVehicle, global::System.Nullable<int> UsefulLife, string TechnicalCondition, string LicensePlate, global::System.Nullable<int> IdRegion, int Original_IdVehicle) {
+            return this.Update(KindOfTheVehicle, UsefulLife, TechnicalCondition, LicensePlate, IdRegion, Original_IdVehicle, Original_IdVehicle);
         }
     }
     
@@ -16449,6 +16817,8 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
         
         private CASCOTableAdapter _cASCOTableAdapter;
         
+        private DriverTableAdapter _driverTableAdapter;
+        
         private InspectorTableAdapter _inspectorTableAdapter;
         
         private LocationTableAdapter _locationTableAdapter;
@@ -16464,6 +16834,8 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
         private TATableAdapter _tATableAdapter;
         
         private UsersTableAdapter _usersTableAdapter;
+        
+        private VehicleTableAdapter _vehicleTableAdapter;
         
         private WitnessTableAdapter _witnessTableAdapter;
         
@@ -16495,6 +16867,20 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
             }
             set {
                 this._cASCOTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public DriverTableAdapter DriverTableAdapter {
+            get {
+                return this._driverTableAdapter;
+            }
+            set {
+                this._driverTableAdapter = value;
             }
         }
         
@@ -16615,6 +17001,20 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
+        public VehicleTableAdapter VehicleTableAdapter {
+            get {
+                return this._vehicleTableAdapter;
+            }
+            set {
+                this._vehicleTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
         public WitnessTableAdapter WitnessTableAdapter {
             get {
                 return this._witnessTableAdapter;
@@ -16661,6 +17061,10 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                             && (this._cASCOTableAdapter.Connection != null))) {
                     return this._cASCOTableAdapter.Connection;
                 }
+                if (((this._driverTableAdapter != null) 
+                            && (this._driverTableAdapter.Connection != null))) {
+                    return this._driverTableAdapter.Connection;
+                }
                 if (((this._inspectorTableAdapter != null) 
                             && (this._inspectorTableAdapter.Connection != null))) {
                     return this._inspectorTableAdapter.Connection;
@@ -16693,6 +17097,10 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                             && (this._usersTableAdapter.Connection != null))) {
                     return this._usersTableAdapter.Connection;
                 }
+                if (((this._vehicleTableAdapter != null) 
+                            && (this._vehicleTableAdapter.Connection != null))) {
+                    return this._vehicleTableAdapter.Connection;
+                }
                 if (((this._witnessTableAdapter != null) 
                             && (this._witnessTableAdapter.Connection != null))) {
                     return this._witnessTableAdapter.Connection;
@@ -16717,6 +17125,9 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                 if ((this._cASCOTableAdapter != null)) {
                     count = (count + 1);
                 }
+                if ((this._driverTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 if ((this._inspectorTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -16739,6 +17150,9 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                     count = (count + 1);
                 }
                 if ((this._usersTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._vehicleTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._witnessTableAdapter != null)) {
@@ -16785,12 +17199,30 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._driverTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Driver.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._driverTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._tATableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.TA.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tATableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._vehicleTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Vehicle.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._vehicleTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -16891,11 +17323,27 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._driverTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Driver.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._driverTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._tATableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.TA.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tATableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._vehicleTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Vehicle.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._vehicleTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -17021,11 +17469,27 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._vehicleTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Vehicle.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._vehicleTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._tATableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.TA.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tATableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._driverTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Driver.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._driverTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -17097,6 +17561,11 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
+            if (((this._driverTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._driverTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
+                        "r, должны использовать одинаковую строку подключения.");
+            }
             if (((this._inspectorTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._inspectorTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
@@ -17134,6 +17603,11 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
             }
             if (((this._usersTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._usersTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
+                        "r, должны использовать одинаковую строку подключения.");
+            }
+            if (((this._vehicleTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._vehicleTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
@@ -17186,6 +17660,15 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                     if (this._cASCOTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._cASCOTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._cASCOTableAdapter.Adapter);
+                    }
+                }
+                if ((this._driverTableAdapter != null)) {
+                    revertConnections.Add(this._driverTableAdapter, this._driverTableAdapter.Connection);
+                    this._driverTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._driverTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._driverTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._driverTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._driverTableAdapter.Adapter);
                     }
                 }
                 if ((this._inspectorTableAdapter != null)) {
@@ -17258,6 +17741,15 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                     if (this._usersTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._usersTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._usersTableAdapter.Adapter);
+                    }
+                }
+                if ((this._vehicleTableAdapter != null)) {
+                    revertConnections.Add(this._vehicleTableAdapter, this._vehicleTableAdapter.Connection);
+                    this._vehicleTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._vehicleTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._vehicleTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._vehicleTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._vehicleTableAdapter.Adapter);
                     }
                 }
                 if ((this._witnessTableAdapter != null)) {
@@ -17340,6 +17832,10 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                     this._cASCOTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._cASCOTableAdapter]));
                     this._cASCOTableAdapter.Transaction = null;
                 }
+                if ((this._driverTableAdapter != null)) {
+                    this._driverTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._driverTableAdapter]));
+                    this._driverTableAdapter.Transaction = null;
+                }
                 if ((this._inspectorTableAdapter != null)) {
                     this._inspectorTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._inspectorTableAdapter]));
                     this._inspectorTableAdapter.Transaction = null;
@@ -17371,6 +17867,10 @@ SELECT IDwitness, FullName, Testimony, IDta FROM Witness WHERE (IDwitness = @IDw
                 if ((this._usersTableAdapter != null)) {
                     this._usersTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._usersTableAdapter]));
                     this._usersTableAdapter.Transaction = null;
+                }
+                if ((this._vehicleTableAdapter != null)) {
+                    this._vehicleTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._vehicleTableAdapter]));
+                    this._vehicleTableAdapter.Transaction = null;
                 }
                 if ((this._witnessTableAdapter != null)) {
                     this._witnessTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._witnessTableAdapter]));

@@ -29,16 +29,7 @@ namespace TA
 
         private void button7_Click(object sender, EventArgs e)
         {
-            end_edit(sender, null);
-            if (Program.is_chief)
-            {
-                Program.sas(new Form_chief(), this);
-            }
-            else
-            {
-                Program.sas(new Form_insp(), this);
-            }
-            this.Hide();
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,6 +43,8 @@ namespace TA
             command.Parameters["@Rank"].Value = textBox2.Text;
 
             command.ExecuteNonQuery();
+
+            this.inspectorTableAdapter.Fill(this.tADataSet.Inspector);
         }
 
         private void end_edit(object sender, DataGridViewCellEventArgs e)
@@ -69,6 +62,11 @@ namespace TA
                 MessageBox.Show(Program.error2, Program.error0, buttons);
                 return;
             }
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            end_edit(sender, e);
         }
     }
 }

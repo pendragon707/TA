@@ -19,7 +19,7 @@ namespace TA
 
         private void button10_Click(object sender, EventArgs e)
         {
-            Program.sas(new Ta(), this);
+            Program.sas(new report(), this);
             //Program.report.Show();
             //this.Hide();
         }
@@ -46,10 +46,14 @@ namespace TA
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Program.sas(new Ta(), this);
+            Program.sas(new Ta(Program.conn), this);
             //Program.ta.Show();
             //this.Hide();
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
