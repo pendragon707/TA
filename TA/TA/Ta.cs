@@ -41,11 +41,6 @@ namespace TA
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
       /*  private void button3_Click(object sender, EventArgs e)
         {
             try
@@ -200,7 +195,7 @@ namespace TA
             command.Parameters["@Location"].Value = id_location;
             command.Parameters["@Insp"].Value = comboBox2.SelectedValue;
             command.Parameters["@Date"].Value = dateTimePicker1.Value;
-            command.Parameters["@Kind"].Value = textBox3.Text;
+            command.Parameters["@Kind"].Value = comboBox5.Text;
             command.Parameters["@Weather"].Value = textBox1.Text;
             command.Parameters["@Illumination"].Value = textBox2.Text;
             command.Parameters["@StateOfRoad"].Value = textBox4.Text;
@@ -216,6 +211,11 @@ namespace TA
                 MessageBox.Show(Program.error2, Program.error0, buttons);
                 return;
             }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

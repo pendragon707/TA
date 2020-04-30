@@ -20,40 +20,56 @@ namespace TA
         private void button10_Click(object sender, EventArgs e)
         {
             Program.sas(new report(), this);
-            //Program.report.Show();
-            //this.Hide();
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
               this.Close();
-              Program.auth.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Program.sas(new Driver(Program.conn), this);
-            //Program.driver.Show();
-            //this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             Program.sas(new Vehicle(Program.conn), this);
-            //Program.vehicle.Show();
-            //this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Program.sas(new Ta(Program.conn), this);
-            //Program.ta.Show();
-            //this.Hide();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
+            Program.sas(new osago(), this);
+        }
 
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Program.sas(new Regions(), this);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Program.sas(new Location(), this);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Program.sas(new Witness(), this);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Program.sas(new casco(), this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Program.sas(new Part(), this);
         }
     }
 }

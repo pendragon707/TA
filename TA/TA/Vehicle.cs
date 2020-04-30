@@ -29,15 +29,7 @@ namespace TA
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (Program.is_chief)
-            {
-                Program.sas(new Form_chief(), this);
-            }
-            else
-            {
-                Program.sas(new Form_insp(), this);
-            }
-            this.Hide();
+            this.Close();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -58,7 +50,7 @@ namespace TA
                 command.Parameters.Add("@Cond", SqlDbType.VarChar);
                 command.Parameters.Add("@Num", SqlDbType.VarChar);
                 command.Parameters.Add("@Reg", SqlDbType.Int);
-                command.Parameters["@Kind"].Value = textBox1.Text;
+                command.Parameters["@Kind"].Value = comboBox2.Text;
                 command.Parameters["@Life"].Value = (int)numericUpDown1.Value;
                 command.Parameters["@Cond"].Value = richTextBox1.Text;
                 command.Parameters["@Num"].Value = textBox4.Text;
@@ -105,6 +97,52 @@ namespace TA
                 MessageBox.Show(Program.error2, Program.error0, buttons);
                 return;
             }
+        }
+
+        int[] random_num(int len)
+        {
+            Random rnd = new Random();
+            int[] number = new int[len];
+            for (int i = 0; i < len; i++)
+            {
+                number[i] = rnd.Next(0, 9);
+            }
+            return number;
+        }
+
+        char[] random_str(int len)
+        {
+            Random rnd = new Random();
+            char[] str = new char[len];
+            for (int i = 0; i < len; i++)
+            {
+                str[i] = (char) rnd.Next(1040, 1071);
+            }
+            return str;
+        }
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            char one = (char)rnd.Next(1040, 1071);
+            int[] s_two = new int[3];
+            s_two = random_num(3);
+            char[] s_three = new char[2];
+            s_three = random_str(2);
+            int four;
+
+            SqlCommand command = new SqlCommand(
+                    @"SELECT RegionCode FROM Regions WHERE IdRegion = @Reg", conn);
+            command.Parameters.Add("@Reg", SqlDbType.Int);
+            command.Parameters["@Reg"].Value = comboBox1.SelectedValue;
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows && reader.Read())
+                four = (int)reader["RegionCode"];
+            else four = 750;
+            reader.Close();
+
+            textBox4.Text = one.ToString() + s_two[0].ToString() 
+                + s_two[1].ToString() + s_two[2].ToString() + 
+                s_three[0].ToString() + s_three[1].ToString() + four.ToString();
         }
     }
 }

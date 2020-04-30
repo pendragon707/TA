@@ -36,15 +36,7 @@ namespace TA
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (Program.is_chief)
-            {
-                Program.sas(new Form_chief(), this);
-            }
-            else
-            {
-                Program.sas(new Form_insp(), this);
-            }
-            this.Hide();
+            this.Close();
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -112,6 +104,51 @@ WHERE (FullName LIKE @Name) and (Regions.IdRegion = Driver.IdRegion);", conn);
                 MessageBox.Show(Program.error2, Program.error0, buttons);
                 return;
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

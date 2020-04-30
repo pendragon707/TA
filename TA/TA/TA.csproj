@@ -110,6 +110,12 @@
     <Compile Include="auth.Designer.cs">
       <DependentUpon>auth.cs</DependentUpon>
     </Compile>
+    <Compile Include="casco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="casco.Designer.cs">
+      <DependentUpon>casco.cs</DependentUpon>
+    </Compile>
     <Compile Include="Driver.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,8 +140,32 @@
     <Compile Include="Inspector.Designer.cs">
       <DependentUpon>Inspector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Location.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Location.Designer.cs">
+      <DependentUpon>Location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="osago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="osago.Designer.cs">
+      <DependentUpon>osago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Part.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Part.Designer.cs">
+      <DependentUpon>Part.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Regions.Designer.cs">
+      <DependentUpon>Regions.cs</DependentUpon>
+    </Compile>
     <Compile Include="report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,8 +199,17 @@
     <Compile Include="Vehicle.Designer.cs">
       <DependentUpon>Vehicle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Witness.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Witness.Designer.cs">
+      <DependentUpon>Witness.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="auth.resx">
       <DependentUpon>auth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="casco.resx">
+      <DependentUpon>casco.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Driver.resx">
       <DependentUpon>Driver.cs</DependentUpon>
@@ -185,6 +224,15 @@
     <EmbeddedResource Include="Inspector.resx">
       <DependentUpon>Inspector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Location.resx">
+      <DependentUpon>Location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="osago.resx">
+      <DependentUpon>osago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Part.resx">
+      <DependentUpon>Part.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -195,6 +243,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Regions.resx">
+      <DependentUpon>Regions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="report.resx">
       <DependentUpon>report.cs</DependentUpon>
     </EmbeddedResource>
@@ -207,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vehicle.resx">
       <DependentUpon>Vehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Witness.resx">
+      <DependentUpon>Witness.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

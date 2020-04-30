@@ -1049,8 +1049,6 @@ namespace TA {
             
             private global::System.Data.DataColumn columnDuration;
             
-            private global::System.Data.DataColumn columnSSMA_TimeStamp;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public CASCODataTable() {
@@ -1142,14 +1140,6 @@ namespace TA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn SSMA_TimeStampColumn {
-                get {
-                    return this.columnSSMA_TimeStamp;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1185,7 +1175,7 @@ namespace TA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CASCORow AddCASCORow(string Insurer, string Insuree, VehicleRow parentVehicleRowByFK__CASCO__IDvehicle__06CD04F7, DriverRow parentDriverRowByFK__CASCO__IDdriver__17F790F9, System.DateTime Commencement, int Duration, byte[] SSMA_TimeStamp) {
+            public CASCORow AddCASCORow(string Insurer, string Insuree, VehicleRow parentVehicleRowByFK__CASCO__IDvehicle__06CD04F7, DriverRow parentDriverRowByFK__CASCO__IDdriver__17F790F9, System.DateTime Commencement, int Duration) {
                 CASCORow rowCASCORow = ((CASCORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1194,8 +1184,7 @@ namespace TA {
                         null,
                         null,
                         Commencement,
-                        Duration,
-                        SSMA_TimeStamp};
+                        Duration};
                 if ((parentVehicleRowByFK__CASCO__IDvehicle__06CD04F7 != null)) {
                     columnValuesArray[3] = parentVehicleRowByFK__CASCO__IDvehicle__06CD04F7[0];
                 }
@@ -1238,7 +1227,6 @@ namespace TA {
                 this.columnIDdriver = base.Columns["IDdriver"];
                 this.columnCommencement = base.Columns["Commencement"];
                 this.columnDuration = base.Columns["Duration"];
-                this.columnSSMA_TimeStamp = base.Columns["SSMA_TimeStamp"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1258,8 +1246,6 @@ namespace TA {
                 base.Columns.Add(this.columnCommencement);
                 this.columnDuration = new global::System.Data.DataColumn("Duration", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDuration);
-                this.columnSSMA_TimeStamp = new global::System.Data.DataColumn("SSMA_TimeStamp", typeof(byte[]), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSSMA_TimeStamp);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIDcasco}, true));
                 this.columnIDcasco.AutoIncrement = true;
@@ -1270,7 +1256,6 @@ namespace TA {
                 this.columnIDcasco.Unique = true;
                 this.columnInsurer.MaxLength = 2147483647;
                 this.columnInsuree.MaxLength = 255;
-                this.columnSSMA_TimeStamp.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7521,22 +7506,6 @@ namespace TA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public byte[] SSMA_TimeStamp {
-                get {
-                    try {
-                        return ((byte[])(this[this.tableCASCO.SSMA_TimeStampColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'SSMA_TimeStamp\' в таблице \'CASCO\' равно DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCASCO.SSMA_TimeStampColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public DriverRow DriverRow {
                 get {
                     return ((DriverRow)(this.GetParentRow(this.Table.ParentRelations["FK__CASCO__IDdriver__17F790F9"])));
@@ -7627,18 +7596,6 @@ namespace TA {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetDurationNull() {
                 this[this.tableCASCO.DurationColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsSSMA_TimeStampNull() {
-                return this.IsNull(this.tableCASCO.SSMA_TimeStampColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetSSMA_TimeStampNull() {
-                this[this.tableCASCO.SSMA_TimeStampColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -10764,19 +10721,26 @@ namespace TA.TADataSetTableAdapters {
             tableMapping.ColumnMappings.Add("IDdriver", "IDdriver");
             tableMapping.ColumnMappings.Add("Commencement", "Commencement");
             tableMapping.ColumnMappings.Add("Duration", "Duration");
-            tableMapping.ColumnMappings.Add("SSMA_TimeStamp", "SSMA_TimeStamp");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[CASCO] WHERE (([IDcasco] = @Original_IDcasco) AND ([SSMA_TimeS" +
-                "tamp] = @Original_SSMA_TimeStamp))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [CASCO] WHERE (([IDcasco] = @Original_IDcasco) AND ((@IsNull_Insuree = 1 AND [Insuree] IS NULL) OR ([Insuree] = @Original_Insuree)) AND ((@IsNull_IDvehicle = 1 AND [IDvehicle] IS NULL) OR ([IDvehicle] = @Original_IDvehicle)) AND ((@IsNull_IDdriver = 1 AND [IDdriver] IS NULL) OR ([IDdriver] = @Original_IDdriver)) AND ((@IsNull_Commencement = 1 AND [Commencement] IS NULL) OR ([Commencement] = @Original_Commencement)) AND ((@IsNull_Duration = 1 AND [Duration] IS NULL) OR ([Duration] = @Original_Duration)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDcasco", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDcasco", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SSMA_TimeStamp", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SSMA_TimeStamp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Insuree", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Insuree", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Insuree", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Insuree", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IDvehicle", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDvehicle", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDvehicle", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDvehicle", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IDdriver", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDdriver", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDdriver", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDdriver", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Commencement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Commencement", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Commencement", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Commencement", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Duration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Duration", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Duration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Duration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[CASCO] ([Insurer], [Insuree], [IDvehicle], [IDdriver], [Commencement], [Duration]) VALUES (@Insurer, @Insuree, @IDvehicle, @IDdriver, @Commencement, @Duration);
-SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, SSMA_TimeStamp FROM CASCO WHERE (IDcasco = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [CASCO] ([Insurer], [Insuree], [IDvehicle], [IDdriver], [Commencement], [Duration]) VALUES (@Insurer, @Insuree, @IDvehicle, @IDdriver, @Commencement, @Duration);
+SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration FROM CASCO WHERE (IDcasco = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Insurer", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Insurer", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Insuree", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Insuree", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -10786,8 +10750,8 @@ SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, S
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Duration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Duration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[CASCO] SET [Insurer] = @Insurer, [Insuree] = @Insuree, [IDvehicle] = @IDvehicle, [IDdriver] = @IDdriver, [Commencement] = @Commencement, [Duration] = @Duration WHERE (([IDcasco] = @Original_IDcasco) AND ([SSMA_TimeStamp] = @Original_SSMA_TimeStamp));
-SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, SSMA_TimeStamp FROM CASCO WHERE (IDcasco = @IDcasco)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [CASCO] SET [Insurer] = @Insurer, [Insuree] = @Insuree, [IDvehicle] = @IDvehicle, [IDdriver] = @IDdriver, [Commencement] = @Commencement, [Duration] = @Duration WHERE (([IDcasco] = @Original_IDcasco) AND ((@IsNull_Insuree = 1 AND [Insuree] IS NULL) OR ([Insuree] = @Original_Insuree)) AND ((@IsNull_IDvehicle = 1 AND [IDvehicle] IS NULL) OR ([IDvehicle] = @Original_IDvehicle)) AND ((@IsNull_IDdriver = 1 AND [IDdriver] IS NULL) OR ([IDdriver] = @Original_IDdriver)) AND ((@IsNull_Commencement = 1 AND [Commencement] IS NULL) OR ([Commencement] = @Original_Commencement)) AND ((@IsNull_Duration = 1 AND [Duration] IS NULL) OR ([Duration] = @Original_Duration)));
+SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration FROM CASCO WHERE (IDcasco = @IDcasco)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Insurer", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Insurer", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Insuree", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Insuree", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -10796,7 +10760,16 @@ SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, S
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Commencement", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Commencement", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Duration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Duration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDcasco", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDcasco", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SSMA_TimeStamp", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SSMA_TimeStamp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Insuree", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Insuree", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Insuree", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Insuree", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IDvehicle", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDvehicle", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDvehicle", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDvehicle", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IDdriver", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDdriver", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDdriver", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDdriver", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Commencement", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Commencement", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Commencement", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Commencement", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Duration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Duration", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Duration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Duration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDcasco", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDcasco", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -10813,8 +10786,8 @@ SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, S
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, SS" +
-                "MA_TimeStamp FROM dbo.CASCO";
+            this._commandCollection[0].CommandText = "SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration FRO" +
+                "M CASCO";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -10875,13 +10848,47 @@ SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, S
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_IDcasco, byte[] Original_SSMA_TimeStamp) {
+        public virtual int Delete(int Original_IDcasco, string Original_Insuree, global::System.Nullable<int> Original_IDvehicle, global::System.Nullable<int> Original_IDdriver, global::System.Nullable<global::System.DateTime> Original_Commencement, global::System.Nullable<int> Original_Duration) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IDcasco));
-            if ((Original_SSMA_TimeStamp == null)) {
-                throw new global::System.ArgumentNullException("Original_SSMA_TimeStamp");
+            if ((Original_Insuree == null)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((byte[])(Original_SSMA_TimeStamp));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Insuree));
+            }
+            if ((Original_IDvehicle.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_IDvehicle.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Original_IDdriver.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_IDdriver.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Commencement.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((System.DateTime)(Original_Commencement.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Duration.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_Duration.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -10960,7 +10967,7 @@ SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, S
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Insurer, string Insuree, global::System.Nullable<int> IDvehicle, global::System.Nullable<int> IDdriver, global::System.Nullable<global::System.DateTime> Commencement, global::System.Nullable<int> Duration, int Original_IDcasco, byte[] Original_SSMA_TimeStamp, int IDcasco) {
+        public virtual int Update(string Insurer, string Insuree, global::System.Nullable<int> IDvehicle, global::System.Nullable<int> IDdriver, global::System.Nullable<global::System.DateTime> Commencement, global::System.Nullable<int> Duration, int Original_IDcasco, string Original_Insuree, global::System.Nullable<int> Original_IDvehicle, global::System.Nullable<int> Original_IDdriver, global::System.Nullable<global::System.DateTime> Original_Commencement, global::System.Nullable<int> Original_Duration, int IDcasco) {
             if ((Insurer == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -10998,13 +11005,47 @@ SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, S
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_IDcasco));
-            if ((Original_SSMA_TimeStamp == null)) {
-                throw new global::System.ArgumentNullException("Original_SSMA_TimeStamp");
+            if ((Original_Insuree == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((byte[])(Original_SSMA_TimeStamp));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Insuree));
             }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(IDcasco));
+            if ((Original_IDvehicle.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_IDvehicle.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((Original_IDdriver.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_IDdriver.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Commencement.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_Commencement.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Duration.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_Duration.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(IDcasco));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -11025,8 +11066,8 @@ SELECT IDcasco, Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, S
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Insurer, string Insuree, global::System.Nullable<int> IDvehicle, global::System.Nullable<int> IDdriver, global::System.Nullable<global::System.DateTime> Commencement, global::System.Nullable<int> Duration, int Original_IDcasco, byte[] Original_SSMA_TimeStamp) {
-            return this.Update(Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, Original_IDcasco, Original_SSMA_TimeStamp, Original_IDcasco);
+        public virtual int Update(string Insurer, string Insuree, global::System.Nullable<int> IDvehicle, global::System.Nullable<int> IDdriver, global::System.Nullable<global::System.DateTime> Commencement, global::System.Nullable<int> Duration, int Original_IDcasco, string Original_Insuree, global::System.Nullable<int> Original_IDvehicle, global::System.Nullable<int> Original_IDdriver, global::System.Nullable<global::System.DateTime> Original_Commencement, global::System.Nullable<int> Original_Duration) {
+            return this.Update(Insurer, Insuree, IDvehicle, IDdriver, Commencement, Duration, Original_IDcasco, Original_Insuree, Original_IDvehicle, Original_IDdriver, Original_Commencement, Original_Duration, Original_IDcasco);
         }
     }
     

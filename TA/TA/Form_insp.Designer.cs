@@ -92,6 +92,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "Участники";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -104,6 +105,7 @@
             this.button5.TabIndex = 4;
             this.button5.Text = "Свидетели";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -116,6 +118,7 @@
             this.button6.TabIndex = 5;
             this.button6.Text = "Место ДТП";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -141,6 +144,7 @@
             this.button8.TabIndex = 7;
             this.button8.Text = "КАСКО";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
@@ -153,6 +157,7 @@
             this.button9.TabIndex = 8;
             this.button9.Text = "Регионы";
             this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button10
             // 

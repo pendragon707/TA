@@ -68,5 +68,28 @@ namespace TA
         {
             end_edit(sender, e);
         }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            button2_Click(null, null);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            SqlCommand command = new SqlCommand(
+    @"SELECT NameOfTheInspector as 'ФИО', RankOfInspector as 'Звание',
+    FROM dbo.Inspector
+    WHERE (NameOfTheInspector LIKE @Name);", conn);
+            command.Parameters.Add("@Name", SqlDbType.VarChar);
+            command.Parameters["@Name"].Value = String.Format("%{0}%", textBox5.Text);
+
+            adapter.SelectCommand = command;
+            DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            dataGridView2.DataSource = dataSet.Tables[0];
+            adapter.Update(dataSet);
+        }
     }
 }

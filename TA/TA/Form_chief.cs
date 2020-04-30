@@ -26,33 +26,31 @@ namespace TA
         private void button11_Click(object sender, EventArgs e)
         {
             this.Close();
-            Program.auth.Show();
-            //Program.sas(new auth(Program.conn), this);
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
             Program.sas(new report(), this);
- //         Program.report.Show();
- //         this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Program.sas(new Driver(Program.conn), this);
-            //Program.driver.Show();
- //           this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             Program.sas(new Vehicle(Program.conn), this);
- //           this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Program.sas(new Ta(Program.conn), this);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Program.sas(new Witness(), this);
         }
     }
 }
