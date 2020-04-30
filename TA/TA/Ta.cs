@@ -78,7 +78,24 @@ namespace TA
 
         }
 
-        private void end_edit(object sender, DataGridViewCellEventArgs e)
+        private void end_edit_wit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                witnessTableAdapter.Update(this.tADataSet.Witness);
+                this.Validate();
+                this.fRWitnTABindingSource.EndEdit();
+                this.witnessTableAdapter.Update(this.tADataSet.Witness);
+            }
+            catch (Exception e2)
+            {
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                MessageBox.Show(Program.error2, Program.error0, buttons);
+                return;
+            }
+        }
+
+        private void end_edit_part(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -86,21 +103,28 @@ namespace TA
                 this.Validate();
                 this.fRPartTABindingSource.EndEdit();
                 this.participantsTableAdapter.Update(this.tADataSet.Participants);
+            }
+            catch (Exception e2)
+            {
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                MessageBox.Show(Program.error2, Program.error0, buttons);
+                return;
+            }
+        }
 
-                witnessTableAdapter.Update(this.tADataSet.Witness);
+        private void end_edit_ta(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                tATableAdapter.Update(this.tADataSet.TA);
                 this.Validate();
-                this.fRWitnTABindingSource.EndEdit();
-                this.witnessTableAdapter.Update(this.tADataSet.Witness);
+                this.tABindingSource.EndEdit();
+                this.tATableAdapter.Update(this.tADataSet.TA);
 
                 locationTableAdapter.Update(this.tADataSet.Location);
                 this.Validate();
                 this.locationBindingSource.EndEdit();
                 this.locationTableAdapter.Update(this.tADataSet.Location);
-
-                tATableAdapter.Update(this.tADataSet.TA);
-                this.Validate();
-                this.tABindingSource.EndEdit();
-                this.tATableAdapter.Update(this.tADataSet.TA);
             }
             catch (Exception e2)
             {
@@ -158,17 +182,29 @@ namespace TA
                 id_location = (Int32)command.ExecuteScalar();
             }
 
-            command = new SqlCommand(
+                this.locationTableAdapter.Fill(this.tADataSet.Location);
+
+                command = new SqlCommand(
                     @"Insert into dbo.[TA](IdLocation, IdInspector, DateOfAccident,
-                    KindOfAccident) Values(@Location, @Insp, @Date, @Kind)", conn);
+                    KindOfAccident, Weather, Illumination, StateOfRoad, AnotherCircumstances) 
+                    Values(@Location, @Insp, @Date, @Kind, @Weather, @Illumination,
+                    @StateOfRoad, @AnotherCircumstances)", conn);
             command.Parameters.Add("@Location", SqlDbType.Int);
             command.Parameters.Add("@Insp", SqlDbType.Int);
             command.Parameters.Add("@Date", SqlDbType.DateTime);
             command.Parameters.Add("@Kind", SqlDbType.VarChar);
+            command.Parameters.Add("@Weather", SqlDbType.VarChar);
+            command.Parameters.Add("@Illumination", SqlDbType.VarChar);
+            command.Parameters.Add("@StateOfRoad", SqlDbType.VarChar);
+            command.Parameters.Add("@AnotherCircumstances", SqlDbType.VarChar);
             command.Parameters["@Location"].Value = id_location;
             command.Parameters["@Insp"].Value = comboBox2.SelectedValue;
             command.Parameters["@Date"].Value = dateTimePicker1.Value;
             command.Parameters["@Kind"].Value = textBox3.Text;
+            command.Parameters["@Weather"].Value = textBox1.Text;
+            command.Parameters["@Illumination"].Value = textBox2.Text;
+            command.Parameters["@StateOfRoad"].Value = textBox4.Text;
+            command.Parameters["@AnotherCircumstances"].Value = richTextBox2.Text;
 
             command.ExecuteNonQuery();
 
