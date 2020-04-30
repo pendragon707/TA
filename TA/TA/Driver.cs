@@ -150,5 +150,33 @@ WHERE (FullName LIKE @Name) and (Regions.IdRegion = Driver.IdRegion);", conn);
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int selRowNum = dataGridView1.CurrentCell.RowIndex;
+            int id = (int) dataGridView1.Rows[selRowNum].Cells[0].Value;
+            string name = dataGridView1.Rows[selRowNum].Cells[1].Value.ToString();
+            string date = dataGridView1.Rows[selRowNum].Cells[2].Value.ToString();
+            string rights = dataGridView1.Rows[selRowNum].Cells[3].Value.ToString();
+            string region;
+            SqlCommand command = new SqlCommand(
+                        @"Select * from dbo.[Regions]
+                         WHERE Regions.IdRegion = @Reg", conn);
+            command.Parameters.Add("@Reg", SqlDbType.Int);
+            if (dataGridView1.Rows[selRowNum].Cells[4].Value.ToString() == "")
+                region = " - ";
+            else
+            {
+                command.Parameters["@Reg"].Value = dataGridView1.Rows[selRowNum].Cells[4].Value.ToString(); ;
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows && reader.Read())
+                {
+                    region = reader["RegionName"].ToString();
+                }
+                else region = " - ";
+                reader.Close();
+            }
+            Program.sas(new Driver_one(id, name, date, rights, region), this);
+        }
     }
 }

@@ -122,6 +122,12 @@
     <Compile Include="Driver.Designer.cs">
       <DependentUpon>Driver.cs</DependentUpon>
     </Compile>
+    <Compile Include="Driver_one.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Driver_one.Designer.cs">
+      <DependentUpon>Driver_one.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_chief.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +220,9 @@
     <EmbeddedResource Include="Driver.resx">
       <DependentUpon>Driver.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Driver_one.resx">
+      <DependentUpon>Driver_one.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_chief.resx">
       <DependentUpon>Form_chief.cs</DependentUpon>

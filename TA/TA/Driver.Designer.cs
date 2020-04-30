@@ -46,7 +46,6 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.button7 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -75,6 +74,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.taDataSet1 = new TA.TADataSet();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.regionsBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tADataSet)).BeginInit();
@@ -225,25 +225,11 @@
             this.dataGridView2.Size = new System.Drawing.Size(620, 132);
             this.dataGridView2.TabIndex = 27;
             // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(58)))));
-            this.button7.Font = new System.Drawing.Font("PT Root UI", 11F);
-            this.button7.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button7.Location = new System.Drawing.Point(714, 490);
-            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(152, 53);
-            this.button7.TabIndex = 28;
-            this.button7.Text = "Возврат";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.label7.Location = new System.Drawing.Point(662, 174);
+            this.label7.Location = new System.Drawing.Point(680, 185);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(155, 25);
             this.label7.TabIndex = 45;
@@ -254,7 +240,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.label5.Location = new System.Drawing.Point(663, 61);
+            this.label5.Location = new System.Drawing.Point(681, 72);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 25);
             this.label5.TabIndex = 43;
@@ -264,20 +250,20 @@
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.textBox4.Location = new System.Drawing.Point(652, 199);
+            this.textBox4.Location = new System.Drawing.Point(670, 210);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(230, 33);
+            this.textBox4.Size = new System.Drawing.Size(286, 33);
             this.textBox4.TabIndex = 41;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.textBox2.Location = new System.Drawing.Point(652, 86);
+            this.textBox2.Location = new System.Drawing.Point(670, 97);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(230, 33);
+            this.textBox2.Size = new System.Drawing.Size(286, 33);
             this.textBox2.TabIndex = 39;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -285,7 +271,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.label6.Location = new System.Drawing.Point(661, 119);
+            this.label6.Location = new System.Drawing.Point(679, 130);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(205, 25);
             this.label6.TabIndex = 49;
@@ -318,7 +304,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(894, 31);
+            this.bindingNavigator1.Size = new System.Drawing.Size(982, 31);
             this.bindingNavigator1.TabIndex = 51;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -415,7 +401,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("PT Root UI", 10F);
-            this.label2.Location = new System.Drawing.Point(667, 232);
+            this.label2.Location = new System.Drawing.Point(685, 243);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 25);
             this.label2.TabIndex = 52;
@@ -429,9 +415,9 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("PT Root UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(652, 255);
+            this.comboBox1.Location = new System.Drawing.Point(670, 266);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(230, 33);
+            this.comboBox1.Size = new System.Drawing.Size(286, 33);
             this.comboBox1.TabIndex = 53;
             this.comboBox1.ValueMember = "IdRegion";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -456,9 +442,9 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("PT Root UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(654, 143);
+            this.dateTimePicker1.Location = new System.Drawing.Point(672, 154);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(228, 33);
+            this.dateTimePicker1.Size = new System.Drawing.Size(284, 33);
             this.dateTimePicker1.TabIndex = 54;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
@@ -472,21 +458,36 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(58)))));
             this.button2.Font = new System.Drawing.Font("PT Root UI", 11F);
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.Location = new System.Drawing.Point(652, 290);
+            this.button2.Location = new System.Drawing.Point(670, 301);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(232, 49);
+            this.button2.Size = new System.Drawing.Size(288, 49);
             this.button2.TabIndex = 55;
             this.button2.Text = "Добавить";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(58)))));
+            this.button3.Font = new System.Drawing.Font("PT Root UI", 11F);
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button3.Location = new System.Drawing.Point(806, 43);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(152, 43);
+            this.button3.TabIndex = 56;
+            this.button3.Text = "Отчёт";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Driver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(230)))));
-            this.ClientSize = new System.Drawing.Size(894, 554);
+            this.ClientSize = new System.Drawing.Size(982, 554);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.comboBox1);
@@ -497,7 +498,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button7);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox5);
@@ -539,7 +539,6 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox4;
@@ -576,5 +575,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOfIssueResidenceRightsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn licenceCategoriesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn IdRegion;
+        private System.Windows.Forms.Button button3;
     }
 }

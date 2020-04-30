@@ -66,13 +66,13 @@
             this.regionsTableAdapter = new TA.TADataSetTableAdapters.RegionsTableAdapter();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.idVehicleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kindOfTheVehicleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usefulLifeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.technicalConditionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.licensePlateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.regionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tADataSet)).BeginInit();
@@ -418,6 +418,20 @@
             this.comboBox2.Size = new System.Drawing.Size(309, 33);
             this.comboBox2.TabIndex = 64;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(58)))));
+            this.button1.Font = new System.Drawing.Font("PT Root UI", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Location = new System.Drawing.Point(822, 256);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(77, 33);
+            this.button1.TabIndex = 65;
+            this.button1.Text = "Номер";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // idVehicleDataGridViewTextBoxColumn
             // 
             this.idVehicleDataGridViewTextBoxColumn.DataPropertyName = "IdVehicle";
@@ -452,7 +466,7 @@
             this.licensePlateDataGridViewTextBoxColumn.DataPropertyName = "LicensePlate";
             this.licensePlateDataGridViewTextBoxColumn.HeaderText = "Номер";
             this.licensePlateDataGridViewTextBoxColumn.Name = "licensePlateDataGridViewTextBoxColumn";
-            this.licensePlateDataGridViewTextBoxColumn.Width = 150;
+            this.licensePlateDataGridViewTextBoxColumn.Width = 130;
             // 
             // dataGridViewComboBoxColumn1
             // 
@@ -465,20 +479,6 @@
             this.dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewComboBoxColumn1.ValueMember = "IdRegion";
             this.dataGridViewComboBoxColumn1.Width = 200;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(58)))));
-            this.button1.Font = new System.Drawing.Font("PT Root UI", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(822, 256);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(77, 33);
-            this.button1.TabIndex = 65;
-            this.button1.Text = "Номер";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Vehicle
             // 
@@ -561,12 +561,12 @@
         private System.Windows.Forms.BindingSource regionsBindingSource1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idVehicleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn kindOfTheVehicleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn usefulLifeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn technicalConditionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn licensePlateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
-        private System.Windows.Forms.Button button1;
     }
 }
