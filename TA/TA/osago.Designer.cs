@@ -31,9 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(osago));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.iDosagoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.insurerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.insureeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDvehicleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.vehicleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tADataSet = new TA.TADataSet();
+            this.iDdriverDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.driverBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.commencementDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.durationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oSAGOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.oSAGOTableAdapter = new TA.TADataSetTableAdapters.OSAGOTableAdapter();
             this.vehicleTableAdapter = new TA.TADataSetTableAdapters.VehicleTableAdapter();
@@ -53,7 +60,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.driverBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.vehicleBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
@@ -63,15 +72,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.vehicleBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.driverBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.iDosagoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.insurerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.insureeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDvehicleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.iDdriverDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.commencementDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.durationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tADataSet)).BeginInit();
@@ -79,15 +79,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.oSAGOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.driverBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(58)))));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Silver;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDosagoDataGridViewTextBoxColumn,
@@ -105,6 +105,38 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.end_edit);
             // 
+            // iDosagoDataGridViewTextBoxColumn
+            // 
+            this.iDosagoDataGridViewTextBoxColumn.DataPropertyName = "IDosago";
+            this.iDosagoDataGridViewTextBoxColumn.HeaderText = "IDosago";
+            this.iDosagoDataGridViewTextBoxColumn.Name = "iDosagoDataGridViewTextBoxColumn";
+            this.iDosagoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDosagoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // insurerDataGridViewTextBoxColumn
+            // 
+            this.insurerDataGridViewTextBoxColumn.DataPropertyName = "Insurer";
+            this.insurerDataGridViewTextBoxColumn.HeaderText = "Страховщик";
+            this.insurerDataGridViewTextBoxColumn.Name = "insurerDataGridViewTextBoxColumn";
+            // 
+            // insureeDataGridViewTextBoxColumn
+            // 
+            this.insureeDataGridViewTextBoxColumn.DataPropertyName = "Insuree";
+            this.insureeDataGridViewTextBoxColumn.HeaderText = "Страхователь";
+            this.insureeDataGridViewTextBoxColumn.Name = "insureeDataGridViewTextBoxColumn";
+            // 
+            // iDvehicleDataGridViewTextBoxColumn
+            // 
+            this.iDvehicleDataGridViewTextBoxColumn.DataPropertyName = "IDvehicle";
+            this.iDvehicleDataGridViewTextBoxColumn.DataSource = this.vehicleBindingSource;
+            this.iDvehicleDataGridViewTextBoxColumn.DisplayMember = "LicensePlate";
+            this.iDvehicleDataGridViewTextBoxColumn.HeaderText = "ТС";
+            this.iDvehicleDataGridViewTextBoxColumn.Name = "iDvehicleDataGridViewTextBoxColumn";
+            this.iDvehicleDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.iDvehicleDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.iDvehicleDataGridViewTextBoxColumn.ValueMember = "IdVehicle";
+            this.iDvehicleDataGridViewTextBoxColumn.Width = 150;
+            // 
             // vehicleBindingSource
             // 
             this.vehicleBindingSource.DataMember = "Vehicle";
@@ -115,10 +147,35 @@
             this.tADataSet.DataSetName = "TADataSet";
             this.tADataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // iDdriverDataGridViewTextBoxColumn
+            // 
+            this.iDdriverDataGridViewTextBoxColumn.DataPropertyName = "IDdriver";
+            this.iDdriverDataGridViewTextBoxColumn.DataSource = this.driverBindingSource;
+            this.iDdriverDataGridViewTextBoxColumn.DisplayMember = "FullName";
+            this.iDdriverDataGridViewTextBoxColumn.HeaderText = "Водитель";
+            this.iDdriverDataGridViewTextBoxColumn.Name = "iDdriverDataGridViewTextBoxColumn";
+            this.iDdriverDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.iDdriverDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.iDdriverDataGridViewTextBoxColumn.ValueMember = "IdDriver";
+            this.iDdriverDataGridViewTextBoxColumn.Width = 150;
+            // 
             // driverBindingSource
             // 
             this.driverBindingSource.DataMember = "Driver";
             this.driverBindingSource.DataSource = this.tADataSet;
+            // 
+            // commencementDataGridViewTextBoxColumn
+            // 
+            this.commencementDataGridViewTextBoxColumn.DataPropertyName = "Commencement";
+            this.commencementDataGridViewTextBoxColumn.HeaderText = "Дата заключения договора";
+            this.commencementDataGridViewTextBoxColumn.Name = "commencementDataGridViewTextBoxColumn";
+            this.commencementDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // durationDataGridViewTextBoxColumn
+            // 
+            this.durationDataGridViewTextBoxColumn.DataPropertyName = "Duration";
+            this.durationDataGridViewTextBoxColumn.HeaderText = "Срок договора";
+            this.durationDataGridViewTextBoxColumn.Name = "durationDataGridViewTextBoxColumn";
             // 
             // oSAGOBindingSource
             // 
@@ -281,6 +338,11 @@
             this.comboBox1.TabIndex = 4;
             this.comboBox1.ValueMember = "IdDriver";
             // 
+            // driverBindingSource1
+            // 
+            this.driverBindingSource1.DataMember = "Driver";
+            this.driverBindingSource1.DataSource = this.tADataSet;
+            // 
             // comboBox2
             // 
             this.comboBox2.DataSource = this.vehicleBindingSource1;
@@ -293,6 +355,11 @@
             this.comboBox2.Size = new System.Drawing.Size(218, 33);
             this.comboBox2.TabIndex = 5;
             this.comboBox2.ValueMember = "IdVehicle";
+            // 
+            // vehicleBindingSource1
+            // 
+            this.vehicleBindingSource1.DataMember = "Vehicle";
+            this.vehicleBindingSource1.DataSource = this.tADataSet;
             // 
             // dateTimePicker1
             // 
@@ -385,73 +452,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // vehicleBindingSource1
-            // 
-            this.vehicleBindingSource1.DataMember = "Vehicle";
-            this.vehicleBindingSource1.DataSource = this.tADataSet;
-            // 
-            // driverBindingSource1
-            // 
-            this.driverBindingSource1.DataMember = "Driver";
-            this.driverBindingSource1.DataSource = this.tADataSet;
-            // 
-            // iDosagoDataGridViewTextBoxColumn
-            // 
-            this.iDosagoDataGridViewTextBoxColumn.DataPropertyName = "IDosago";
-            this.iDosagoDataGridViewTextBoxColumn.HeaderText = "IDosago";
-            this.iDosagoDataGridViewTextBoxColumn.Name = "iDosagoDataGridViewTextBoxColumn";
-            this.iDosagoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDosagoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // insurerDataGridViewTextBoxColumn
-            // 
-            this.insurerDataGridViewTextBoxColumn.DataPropertyName = "Insurer";
-            this.insurerDataGridViewTextBoxColumn.HeaderText = "Страховщик";
-            this.insurerDataGridViewTextBoxColumn.Name = "insurerDataGridViewTextBoxColumn";
-            // 
-            // insureeDataGridViewTextBoxColumn
-            // 
-            this.insureeDataGridViewTextBoxColumn.DataPropertyName = "Insuree";
-            this.insureeDataGridViewTextBoxColumn.HeaderText = "Страхователь";
-            this.insureeDataGridViewTextBoxColumn.Name = "insureeDataGridViewTextBoxColumn";
-            // 
-            // iDvehicleDataGridViewTextBoxColumn
-            // 
-            this.iDvehicleDataGridViewTextBoxColumn.DataPropertyName = "IDvehicle";
-            this.iDvehicleDataGridViewTextBoxColumn.DataSource = this.vehicleBindingSource;
-            this.iDvehicleDataGridViewTextBoxColumn.DisplayMember = "LicensePlate";
-            this.iDvehicleDataGridViewTextBoxColumn.HeaderText = "ТС";
-            this.iDvehicleDataGridViewTextBoxColumn.Name = "iDvehicleDataGridViewTextBoxColumn";
-            this.iDvehicleDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.iDvehicleDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.iDvehicleDataGridViewTextBoxColumn.ValueMember = "IdVehicle";
-            this.iDvehicleDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // iDdriverDataGridViewTextBoxColumn
-            // 
-            this.iDdriverDataGridViewTextBoxColumn.DataPropertyName = "IDdriver";
-            this.iDdriverDataGridViewTextBoxColumn.DataSource = this.driverBindingSource;
-            this.iDdriverDataGridViewTextBoxColumn.DisplayMember = "FullName";
-            this.iDdriverDataGridViewTextBoxColumn.HeaderText = "Водитель";
-            this.iDdriverDataGridViewTextBoxColumn.Name = "iDdriverDataGridViewTextBoxColumn";
-            this.iDdriverDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.iDdriverDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.iDdriverDataGridViewTextBoxColumn.ValueMember = "IdDriver";
-            this.iDdriverDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // commencementDataGridViewTextBoxColumn
-            // 
-            this.commencementDataGridViewTextBoxColumn.DataPropertyName = "Commencement";
-            this.commencementDataGridViewTextBoxColumn.HeaderText = "Дата заключения договора";
-            this.commencementDataGridViewTextBoxColumn.Name = "commencementDataGridViewTextBoxColumn";
-            this.commencementDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // durationDataGridViewTextBoxColumn
-            // 
-            this.durationDataGridViewTextBoxColumn.DataPropertyName = "Duration";
-            this.durationDataGridViewTextBoxColumn.HeaderText = "Срок договора";
-            this.durationDataGridViewTextBoxColumn.Name = "durationDataGridViewTextBoxColumn";
-            // 
             // osago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 16F);
@@ -487,9 +487,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.driverBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -19,15 +19,7 @@ namespace TA
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (Program.is_chief)
-            {
-                Program.sas(new Form_chief(), this);
-            }
-            else
-            {
-                Program.sas(new Form_insp(), this);
-            }
-            this.Hide();
+            this.Close();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -51,12 +43,12 @@ namespace TA
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            Program.sas(new DrReg(), this);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            Program.sas(new PartTA(), this);
         }
 
         private void button10_Click(object sender, EventArgs e)

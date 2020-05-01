@@ -217,5 +217,42 @@ namespace TA
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string[] s = new string[11];
+            int selRowNum = dataGridView1.CurrentCell.RowIndex;
+            int id = (int)dataGridView1.Rows[selRowNum].Cells[0].Value;
+
+            SqlCommand command = new SqlCommand(
+            @"Select Street, Town, RegionName, NameOfTheInspector  from dbo.[Location], dbo.[Regions], dbo.[TA], dbo.Inspector
+                         WHERE (TA.IdTA = @ID) and (Location.IdLocation = Ta.IdLocation)
+                            and (Regions.IdRegion = Location.IdRegion)
+                            and (Inspector.IDinspector = TA.IdInspector)", conn);
+            command.Parameters.Add("@ID", SqlDbType.Int);
+            command.Parameters["@ID"].Value = id;
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows && reader.Read())
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    s[i] = reader[i].ToString();
+                }
+            }
+            reader.Close();
+            int k = 3;
+            for(int i = 4; i < 11; i++, k++)
+            {
+                s[i] = (i != 4) ?
+                    dataGridView1.Rows[selRowNum].Cells[k].Value.ToString() :
+                    ((DateTime)dataGridView1.Rows[selRowNum].Cells[k].Value).ToString("dd.MM.yyyy");
+                if (s[i] == "") s[i] = " - ";
+            }
+            Program.sas(new TA_one(s, id), this);
+
+            
+
+
+        }
     }
 }

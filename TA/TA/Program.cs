@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Data;
+using System.IO;
 
 namespace TA
 {
@@ -59,12 +61,18 @@ namespace TA
                           return;
                       }
 
-           /* insp = new Form_insp();
-            chief = new Form_chief();
-            report = new report();
-            ta = new Ta();
-            vehicle = new Vehicle(conn);
-            driver = new Driver(conn);*/
+            /*
+            SqlCommand command = new SqlCommand(@"UPDATE TA SET Scheme = @Scheme WHERE IdTA = 1;", conn);
+            command.Parameters.Add("@Scheme", SqlDbType.Image);
+            command.Parameters["@Scheme"].Value = File.ReadAllBytes(@"D:\Сергей\Рабочий стол\s1200.jpg");
+            command.ExecuteNonQuery();*/
+
+            /* insp = new Form_insp();
+             chief = new Form_chief();
+             report = new report();
+             ta = new Ta();
+             vehicle = new Vehicle(conn);
+             driver = new Driver(conn);*/
             auth = new auth(conn);
             Application.Run(auth);
         }

@@ -67,11 +67,11 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.vehicleBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.driverBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.vehicleBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.driverBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tADataSet)).BeginInit();
@@ -87,7 +87,7 @@
             // dataGridView1
             // 
             this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(58)))));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Silver;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDcascoDataGridViewTextBoxColumn,
@@ -413,6 +413,11 @@
             this.comboBox2.TabIndex = 60;
             this.comboBox2.ValueMember = "IdVehicle";
             // 
+            // vehicleBindingSource1
+            // 
+            this.vehicleBindingSource1.DataMember = "Vehicle";
+            this.vehicleBindingSource1.DataSource = this.tADataSet;
+            // 
             // comboBox1
             // 
             this.comboBox1.DataSource = this.driverBindingSource1;
@@ -425,6 +430,11 @@
             this.comboBox1.Size = new System.Drawing.Size(218, 33);
             this.comboBox1.TabIndex = 59;
             this.comboBox1.ValueMember = "IdDriver";
+            // 
+            // driverBindingSource1
+            // 
+            this.driverBindingSource1.DataMember = "Driver";
+            this.driverBindingSource1.DataSource = this.tADataSet;
             // 
             // textBox2
             // 
@@ -441,16 +451,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(218, 33);
             this.textBox1.TabIndex = 57;
-            // 
-            // vehicleBindingSource1
-            // 
-            this.vehicleBindingSource1.DataMember = "Vehicle";
-            this.vehicleBindingSource1.DataSource = this.tADataSet;
-            // 
-            // driverBindingSource1
-            // 
-            this.driverBindingSource1.DataMember = "Driver";
-            this.driverBindingSource1.DataSource = this.tADataSet;
             // 
             // casco
             // 

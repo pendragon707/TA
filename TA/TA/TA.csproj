@@ -94,6 +94,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -127,6 +128,12 @@
     </Compile>
     <Compile Include="Driver_one.Designer.cs">
       <DependentUpon>Driver_one.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrReg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrReg.Designer.cs">
+      <DependentUpon>DrReg.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_chief.cs">
       <SubType>Form</SubType>
@@ -164,6 +171,12 @@
     <Compile Include="Part.Designer.cs">
       <DependentUpon>Part.cs</DependentUpon>
     </Compile>
+    <Compile Include="PartTA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartTA.Designer.cs">
+      <DependentUpon>PartTA.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regions.cs">
@@ -199,6 +212,12 @@
     <Compile Include="TaDate.Designer.cs">
       <DependentUpon>TaDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="TA_one.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TA_one.Designer.cs">
+      <DependentUpon>TA_one.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vehicle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +243,9 @@
     <EmbeddedResource Include="Driver_one.resx">
       <DependentUpon>Driver_one.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DrReg.resx">
+      <DependentUpon>DrReg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_chief.resx">
       <DependentUpon>Form_chief.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Part.resx">
       <DependentUpon>Part.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartTA.resx">
+      <DependentUpon>PartTA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -264,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TaDate.resx">
       <DependentUpon>TaDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TA_one.resx">
+      <DependentUpon>TA_one.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vehicle.resx">
       <DependentUpon>Vehicle.cs</DependentUpon>

@@ -156,7 +156,7 @@ WHERE (FullName LIKE @Name) and (Regions.IdRegion = Driver.IdRegion);", conn);
             int selRowNum = dataGridView1.CurrentCell.RowIndex;
             int id = (int) dataGridView1.Rows[selRowNum].Cells[0].Value;
             string name = dataGridView1.Rows[selRowNum].Cells[1].Value.ToString();
-            string date = dataGridView1.Rows[selRowNum].Cells[2].Value.ToString();
+            string date = ((DateTime)dataGridView1.Rows[selRowNum].Cells[2].Value).ToString("dd.MM.yyyy");
             string rights = dataGridView1.Rows[selRowNum].Cells[3].Value.ToString();
             string region;
             SqlCommand command = new SqlCommand(

@@ -79,7 +79,7 @@ namespace TA
             SqlDataAdapter adapter = new SqlDataAdapter();
 
             SqlCommand command = new SqlCommand(
-    @"SELECT NameOfTheInspector as 'ФИО', RankOfInspector as 'Звание',
+    @"SELECT NameOfTheInspector as 'ФИО', RankOfInspector as 'Звание'
     FROM dbo.Inspector
     WHERE (NameOfTheInspector LIKE @Name);", conn);
             command.Parameters.Add("@Name", SqlDbType.VarChar);
