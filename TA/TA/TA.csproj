@@ -153,6 +153,12 @@
     <Compile Include="Inspector.Designer.cs">
       <DependentUpon>Inspector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Insp_one.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Insp_one.Designer.cs">
+      <DependentUpon>Insp_one.cs</DependentUpon>
+    </Compile>
     <Compile Include="Location.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,17 +224,35 @@
     <Compile Include="TA_one.Designer.cs">
       <DependentUpon>TA_one.cs</DependentUpon>
     </Compile>
+    <Compile Include="TA_years.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TA_years.Designer.cs">
+      <DependentUpon>TA_years.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vehicle.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vehicle.Designer.cs">
       <DependentUpon>Vehicle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Veh_one.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Veh_one.Designer.cs">
+      <DependentUpon>Veh_one.cs</DependentUpon>
+    </Compile>
     <Compile Include="Witness.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Witness.Designer.cs">
       <DependentUpon>Witness.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WitTA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WitTA.Designer.cs">
+      <DependentUpon>WitTA.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="auth.resx">
       <DependentUpon>auth.cs</DependentUpon>
@@ -254,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inspector.resx">
       <DependentUpon>Inspector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Insp_one.resx">
+      <DependentUpon>Insp_one.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Location.resx">
       <DependentUpon>Location.cs</DependentUpon>
@@ -293,11 +320,20 @@
     <EmbeddedResource Include="TA_one.resx">
       <DependentUpon>TA_one.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TA_years.resx">
+      <DependentUpon>TA_years.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vehicle.resx">
       <DependentUpon>Vehicle.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Veh_one.resx">
+      <DependentUpon>Veh_one.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Witness.resx">
       <DependentUpon>Witness.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WitTA.resx">
+      <DependentUpon>WitTA.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

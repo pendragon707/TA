@@ -29,7 +29,10 @@ namespace TA
 
         private void button7_Click(object sender, EventArgs e)
         {
-            this.Close();
+            int selRowNum = dataGridView1.CurrentCell.RowIndex;
+            int id = (int)dataGridView1.Rows[selRowNum].Cells[0].Value;
+
+            Program.sas(new Insp_one(id), this);
         }
 
         private void button1_Click(object sender, EventArgs e)

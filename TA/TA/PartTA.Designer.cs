@@ -51,7 +51,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(27, 138);
+            this.dataGridView1.Location = new System.Drawing.Point(27, 115);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 28;
@@ -64,9 +64,9 @@
             this.label3.Font = new System.Drawing.Font("PT Root UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(55, 66);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(611, 41);
+            this.label3.Size = new System.Drawing.Size(435, 41);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Количество участников ДТП по городам";
+            this.label3.Text = "Количество ДТП по городам";
             // 
             // chart1
             // 
@@ -74,7 +74,7 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(404, 138);
+            this.chart1.Location = new System.Drawing.Point(404, 115);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
             series1.ChartArea = "ChartArea1";

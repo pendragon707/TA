@@ -144,5 +144,13 @@ namespace TA
                 + s_two[1].ToString() + s_two[2].ToString() + 
                 s_three[0].ToString() + s_three[1].ToString() + four.ToString();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int selRowNum = dataGridView1.CurrentCell.RowIndex;
+            int id = (int)dataGridView1.Rows[selRowNum].Cells[0].Value;
+
+            Program.sas(new Veh_one(id), this);
+        }
     }
 }

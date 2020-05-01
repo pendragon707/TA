@@ -23,7 +23,7 @@ namespace TA
         }
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Program.sas(new TA_years(), this);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace TA
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            Program.sas(new WitTA(), this);
         }
 
         private void button6_Click(object sender, EventArgs e)

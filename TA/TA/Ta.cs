@@ -249,10 +249,6 @@ namespace TA
                 if (s[i] == "") s[i] = " - ";
             }
             Program.sas(new TA_one(s, id), this);
-
-            
-
-
         }
     }
 }

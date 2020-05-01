@@ -20,13 +20,11 @@ namespace TA
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-          
-
             SqlDataAdapter adapter = new SqlDataAdapter();
 
             SqlCommand command = new SqlCommand(
                  @"SELECT TA.DateOfAccident, Driver.FullName as 'ФИО', Driver.DateOfIssueResidenceRights as 'Дата получения прав', 
-                LicenceCategories as 'Категория прав', DATEDIFF(year, Driver.DateOfIssueResidenceRights, TA.DateOfAccident) as 'Водительский опыт (годы)',
+                LicenceCategories as 'Категория прав', DATEDIFF(year, Driver.DateOfIssueResidenceRights, TA.DateOfAccident) as 'Водительский стаж (годы)',
                 IIf(([Driver].[IdRegion] = [Location].[IdRegion]), 'Да', 'Нет') AS 'Совпадает регион ДТП с пропиской?'
                 FROM dbo.Location, dbo.TA, dbo.Regions, dbo.Driver, dbo.Participants
                 WHERE (Location.IDlocation = [TA].IDLocation) 

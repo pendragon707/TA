@@ -38,7 +38,7 @@
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.Color.FloralWhite;
+            this.button6.BackColor = System.Drawing.Color.OldLace;
             this.button6.Font = new System.Drawing.Font("PT Root UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.Location = new System.Drawing.Point(119, 363);
             this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -51,20 +51,20 @@
             // 
             // button5
             // 
-            this.button5.BackColor = System.Drawing.Color.FloralWhite;
+            this.button5.BackColor = System.Drawing.Color.OldLace;
             this.button5.Font = new System.Drawing.Font("PT Root UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Location = new System.Drawing.Point(119, 403);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(400, 40);
             this.button5.TabIndex = 24;
-            this.button5.Text = "Участники ДТП по городам";
+            this.button5.Text = "Количество ДТП по городам";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.Bisque;
+            this.button3.BackColor = System.Drawing.Color.OldLace;
             this.button3.Font = new System.Drawing.Font("PT Root UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(119, 323);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -77,7 +77,7 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.FloralWhite;
+            this.button2.BackColor = System.Drawing.Color.OldLace;
             this.button2.Font = new System.Drawing.Font("PT Root UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(119, 283);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -90,14 +90,14 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Bisque;
+            this.button1.BackColor = System.Drawing.Color.OldLace;
             this.button1.Font = new System.Drawing.Font("PT Root UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(119, 243);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(400, 40);
             this.button1.TabIndex = 21;
-            this.button1.Text = "История ДТП водителя";
+            this.button1.Text = "Количество ДТП по годам";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
